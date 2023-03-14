@@ -67,4 +67,15 @@ The purpose of this application is to enable users to find answears from real pr
 - A user can block another user from his/her topic
 - A user can edit their messages
 ---
-plantuml -tsvg file:///D:/ANUL3/PS/Tema1/test_BD_diagram.svg
+Regular **Markdown** here.
+
+<!--
+@startuml firstDiagram
+
+Alice -> Bob: Hello
+Bob -> Alice: Hi!
+	
+@enduml
+-->
+
+![](firstDiagram.svg)
