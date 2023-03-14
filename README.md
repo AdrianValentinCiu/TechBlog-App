@@ -65,5 +65,5 @@ The purpose of this application is to enable users to find answears from real pr
 - A user can delete his/her topic
 - A user can edit a message
 - A user can block another user from his/her topic
-- A user can edit
+- A user can edit their messages
 ---
