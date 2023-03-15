@@ -69,4 +69,5 @@ The purpose of this application is to enable users to find answears from real pr
 ---
 ## Database diagram:
 
-![db_diagram](https://user-images.githubusercontent.com/111737211/225232763-dc1987c2-97c8-48bf-80ea-afc7df7109ca.svg)
+![db_diagram](https://user-images.githubusercontent.com/111737211/225236615-6b779103-e515-49eb-9b3a-0a7dabfab8b9.svg)
+
