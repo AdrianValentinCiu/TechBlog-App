@@ -67,39 +67,7 @@ The purpose of this application is to enable users to find answears from real pr
 - A user can block another user from his/her topic
 - A user can edit their messages
 ---
-@startuml
-!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
-!define foreign_key(x) <color:#aaaaaa><&key></color> x
-!define column(x) <color:#efefef><&media-record></color> x
-!define table(x) entity x << (T, white) >>
-table( tblUser ) {
-  primary_key( idUser ): INTEGER 
-  column( isOnline ): BOOLEAN 
-  column( email ): CHARACTER VARYING
-  column( password ): CHARACTER VARYING
-  foreign_key( idAdditionalData ): INTEGER <<FK>>
-}
-table( tblAdditionalUserData ) {
-  primary_key( idAdditionalData ): INTEGER 
-  column( firstName ): CHARACTER VARYING 
-  column( lastName ): CHARACTER VARYING
-  column( info ): CHARACTER VARYING
-}
-table( tblmessage ) {
-  primary_key( idMessage ): INTEGER 
-  column( msgText ): CHARACTER VARYING
-  foreign_key( idTopic ): INTEGER <<FK>>
-  foreign_key( idUser ): INTEGER <<FK>>
-}
-table( tblTopic ) {
-  primary_key( idTopic ): INTEGER 
-  column( topicTitle ): CHARACTER VARYING
-  column( likeedMessage ): INTEGER
-  foreign_key( idUserPostAdmin ): INTEGER <<FK>>
-}
-tblUser }|--|| tblAdditionalUserData
-tblmessage }|--|| tblUser
-tblmessage }|--|| tblTopic
-tblTopic }|--|| tblUser
+## Database diagram:
 
-@enduml
+![db_diagram](https://user-images.githubusercontent.com/111737211/225236615-6b779103-e515-49eb-9b3a-0a7dabfab8b9.svg)
+
