@@ -67,7 +67,11 @@ The purpose of this application is to enable users to find answears from real pr
 - A user can block another user from his/her topic
 - A user can edit their messages
 ---
+
 ## Database diagram:
 
-![db_diagram](https://user-images.githubusercontent.com/111737211/225236615-6b779103-e515-49eb-9b3a-0a7dabfab8b9.svg)
+
+![db_diagram](https://user-images.githubusercontent.com/111737211/225292495-4d65691f-2215-4c26-8fda-3304a194a285.svg)
+
+
 
