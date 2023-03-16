@@ -6,6 +6,7 @@ import com.tech.blog.request_respone.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
 import com.tech.blog.user.UserServiceImpl;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,12 @@ public class RestController {
 
     @DeleteMapping("/delete_user")
     public ResponseEntity<Boolean> removeUser(@RequestBody UserDeleteRequest request){
-        System.out.println(request.getId() + "   "  + request.getIdAdminUser());
         return ResponseEntity.ok(userService.deleteUser(request.getId(), request.getIdAdminUser()));
+    }
+
+    @GetMapping("/user_data/{user_id}")
+    @ResponseBody
+    public User dataUser(@PathVariable Integer user_id){
+        return userService.getUserById(user_id);
     }
 }
