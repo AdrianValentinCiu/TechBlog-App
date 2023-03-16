@@ -12,7 +12,4 @@ public interface UserService {
     User getUserByEmail(String email);
 
     void deleteUser(Integer IdUser);
-
-    void saveUser(User user);
-
 }
