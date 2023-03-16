@@ -28,7 +28,7 @@ public class User {
         return idUser;
     }
 
-    public boolean isOnline() {
+    public boolean getIsOnline() {
         return isOnline;
     }
 
@@ -48,7 +48,7 @@ public class User {
         this.idUser = idUser;
     }
 
-    public void setOnline(boolean online) {
+    public void setIsOnline(boolean online) {
         isOnline = online;
     }
 

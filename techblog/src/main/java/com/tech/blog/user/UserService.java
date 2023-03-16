@@ -1,9 +1,15 @@
 package com.tech.blog.user;
 
 public interface UserService {
-    public void login(User user);
+    void login(Integer IdUser);
 
-    public void logout(User user);
+    void logout(Integer IdUser);
 
-    public void register(User user);
+    void register(User user);
+
+    User getUserById(Integer IdUser);
+
+    User getUserByEmail(String email);
+
+    void deleteUser(Integer IdUser);
 }
