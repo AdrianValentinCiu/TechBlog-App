@@ -5,6 +5,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "tbluser")
 public class User {
+    /***
+     * This class is used to define the data of a user in a table in the database
+     */
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idUser;
