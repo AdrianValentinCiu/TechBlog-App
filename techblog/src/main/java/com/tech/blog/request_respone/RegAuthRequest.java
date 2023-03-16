@@ -1,20 +1,15 @@
-package com.tech.blog.auth;
+package com.tech.blog.request_respone;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-public class ResponseRequest {
+public class RegAuthRequest {
     private String email;
     private String password;
 
-    public ResponseRequest(Object email, Object password) {
+    public RegAuthRequest(Object email, Object password) {
         this.email = (String)email;
         this.password = (String)password;
     }
 
-    public ResponseRequest() {
+    public RegAuthRequest() {
     }
 
     public String getEmail() {

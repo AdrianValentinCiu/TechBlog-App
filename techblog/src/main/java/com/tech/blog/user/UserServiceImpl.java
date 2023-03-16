@@ -60,7 +60,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUser(Integer IdUser) {
-        userRepository.deleteById(IdUser);
+    public boolean deleteUser(Integer IdDelAdmin, Integer IdAdminUser) {
+        User delUser = getUserById(IdDelAdmin);
+        User adminUser = getUserById(IdAdminUser);
+        if(adminUser != null && delUser != null && adminUser.getRole().equals(Role.ADMIN) && delUser.getRole().equals(Role.USER)) {
+            userRepository.deleteById(IdDelAdmin);
+            return true;
+        }
+        return false;
     }
 }

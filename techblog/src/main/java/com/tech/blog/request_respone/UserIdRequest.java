@@ -1,13 +1,13 @@
-package com.tech.blog.auth;
+package com.tech.blog.request_respone;
 
-public class DeAuthenticationRequest {
+public class UserIdRequest {
     private Integer id;
 
-    public DeAuthenticationRequest(Object id) {
+    public UserIdRequest(Object id) {
         this.id = (Integer)id;
     }
 
-    public DeAuthenticationRequest() {
+    public UserIdRequest() {
     }
 
     public Integer getId() {
