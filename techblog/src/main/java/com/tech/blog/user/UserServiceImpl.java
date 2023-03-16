@@ -20,20 +20,19 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean login(String email, String password) {
         User user = getUserByEmail(email);
-        if(user != null){
-            user.setIsOnline(true);
-            userRepository.save(user);
-            return true;
-        }
-        return false;
+        return setUserState(user, false);
     }
 
     @Override
     public boolean logout(Integer IdUser) {
         User user = getUserById(IdUser);
         System.out.println(user);
-        if(user != null && user.getIsOnline() == true){
-            user.setIsOnline(false);
+        return setUserState(user, true);
+    }
+
+    private boolean setUserState(User user, boolean state){
+        if(user != null && user.getIsOnline() == state){
+            user.setIsOnline(!state);
             userRepository.save(user);
             return true;
         }
