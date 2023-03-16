@@ -17,41 +17,41 @@ CREATE TABLE tblUser
 
 CREATE TABLE tblAdditionalUserData
 (
-	idAdditionalData INTEGER PRIMARY KEY,
-	firstName VARCHAR(40) NOT NULL,
-	lastName VARCHAR(40) NOT NULL,
+	id_additional_data INTEGER PRIMARY KEY,
+	first_name VARCHAR(40) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
 	info VARCHAR(500) NOT NULL,
 	CONSTRAINT fk_data_user
-	FOREIGN KEY (idAdditionalData)
-	REFERENCES tblUser (idUser)
+	FOREIGN KEY (id_additional_data)
+	REFERENCES tblUser (id_user)
     ON DELETE CASCADE
 )
 
 CREATE TABLE tblTopic
 (
-	idTopic INTEGER IDENTITY(1,1) PRIMARY KEY,
-	topicTitle VARCHAR(40) NOT NULL,
-	idUserPostAdmin INTEGER NOT NULL,
+	id_topic INTEGER IDENTITY(1,1) PRIMARY KEY,
+	topic_title VARCHAR(40) NOT NULL,
+	id_user_post_admin INTEGER NOT NULL,
 	CONSTRAINT fk_topic_user
-	FOREIGN KEY (idUserPostAdmin)
-	REFERENCES tblUser (idUser)
+	FOREIGN KEY (id_user_post_admin)
+	REFERENCES tblUser (id_user)
     ON DELETE CASCADE
 )
 
 CREATE TABLE tblMessage
 (
-	idMessage INTEGER IDENTITY(1,1) PRIMARY KEY,
-	msgText VARCHAR(2000) NOT NULL,
-	likesMessage INTEGER NOT NULL DEFAULT(0),
-	idTopic INTEGER NOT NULL,
-	idUser INTEGER NOT NULL,
+	id_message INTEGER IDENTITY(1,1) PRIMARY KEY,
+	msg_text VARCHAR(2000) NOT NULL,
+	likes_message INTEGER NOT NULL DEFAULT(0),
+	id_topic INTEGER NOT NULL,
+	id_user INTEGER NOT NULL,
 	CONSTRAINT fk_msg_topic
-	FOREIGN KEY (idTopic)
-	REFERENCES tblUser (idUser)
+	FOREIGN KEY (id_topic)
+	REFERENCES tblUser (id_user)
     ON DELETE CASCADE,
 	CONSTRAINT fk_msg_user
-	FOREIGN KEY (idUser)
-	REFERENCES tblUser (idUser)
+	FOREIGN KEY (id_user)
+	REFERENCES tblUser (id_user)
 	ON DELETE NO ACTION
 )
 

@@ -3,6 +3,8 @@ package com.tech.blog.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
     /**
@@ -19,8 +21,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean login(String email, String password) {
-        User user = getUserByEmail(email);
-        return setUserState(user, false);
+        Optional<User> user = userRepository.findByEmailAndPassword(email, password);
+        if(user.get() != null)
+            return setUserState(user.get(), false);
+        return false;
     }
 
     @Override
