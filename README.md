@@ -1,6 +1,6 @@
 # TechBlog
 
-    TechBlog is the newest technology blog where you can ask any question abaut any technology available on the market.
+TechBlog is the newest technology blog where you can ask any question abaut any technology available on the market.
 The purpose of this application is to enable users to find answears from real profesionals without being annoyed by the ads.
 
 ## The main objectives of this project are:
