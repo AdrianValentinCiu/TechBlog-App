@@ -5,8 +5,7 @@ import com.tech.blog.request_respone.UserIdRequest;
 import com.tech.blog.request_respone.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
-import com.tech.blog.user.UserServiceImpl;
-import lombok.Getter;
+import com.tech.blog.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class RestController {
      * @param userService is used to use the functionality implemented
      */
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     /**
      * This method is used to register a new user
