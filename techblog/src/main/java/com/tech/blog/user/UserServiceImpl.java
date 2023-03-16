@@ -1,6 +1,16 @@
 package com.tech.blog.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserServiceImpl implements UserService{
+    /**
+     * This class is used to implement all the functionality a user can have regarding accessing the database.
+     * Holds teh business of a User logic.
+     * For deleting a user only an ADMIN will be able to use that functionality.
+     * @param userRepository used to communicate with the database
+     */
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -8,22 +18,36 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void login(Integer IdUser) {
-        User user = getUserById(IdUser);
-        user.setIsOnline(true);
-        userRepository.save(user);
+    public boolean login(String email, String password) {
+        User user = getUserByEmail(email);
+        if(user != null){
+            user.setIsOnline(true);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void logout(Integer IdUser) {
+    public boolean logout(Integer IdUser) {
         User user = getUserById(IdUser);
-        user.setIsOnline(false);
-        userRepository.save(user);
+        System.out.println(user);
+        if(user != null && user.getIsOnline() == true){
+            user.setIsOnline(false);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void register(User user) {
-        userRepository.save(user);
+    public boolean register(User user) {
+        User findUSer = getUserByEmail(user.getEmail());
+        if(findUSer == null) {
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -39,5 +63,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Integer IdUser) {
         userRepository.deleteById(IdUser);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

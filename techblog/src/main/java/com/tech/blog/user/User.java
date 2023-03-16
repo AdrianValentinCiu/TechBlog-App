@@ -6,19 +6,19 @@ import jakarta.persistence.*;
 @Table(name = "tbluser")
 public class User {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idUser;
     private boolean isOnline;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING) // takes a String values of enum
-    private Role role;
+    private Role userRole;
 
-    public User(Integer idUser, boolean isOnline, String email, String password, Role role) {
-        this.idUser = idUser;
+    public User(boolean isOnline, String email, String password, Role userRole) {
         this.isOnline = isOnline;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.userRole = userRole;
     }
 
     public User() {
@@ -41,7 +41,7 @@ public class User {
     }
 
     public Role getRole() {
-        return role;
+        return userRole;
     }
 
     public void setIdUser(Integer idUser) {
@@ -60,7 +60,11 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(Role userRole) {
+        this.userRole = userRole;
+    }
+
+    public String toString(){
+        return idUser + " " + isOnline + " " + email + " " + password + " " + userRole + "\n";
     }
 }

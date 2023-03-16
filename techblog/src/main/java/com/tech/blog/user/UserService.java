@@ -1,15 +1,18 @@
 package com.tech.blog.user;
 
 public interface UserService {
-    void login(Integer IdUser);
+    boolean login(String Email, String password);
 
-    void logout(Integer IdUser);
+    boolean logout(Integer IdUser);
 
-    void register(User user);
+    boolean register(User user);
 
     User getUserById(Integer IdUser);
 
     User getUserByEmail(String email);
 
     void deleteUser(Integer IdUser);
+
+    void saveUser(User user);
+
 }
