@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean login(String email, String password) {
         Optional<User> user = userRepository.findByEmailAndPassword(email, password);
-        if(user.get() != null)
+        if(user != null)
             return setUserState(user.get(), false);
         return false;
     }
