@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
-@RequiredArgsConstructor
 public class UserController {
     /**
      * This class is used to implement the REST controller, using the endpoints: GET, POST, PUT, DELETE
@@ -21,6 +19,10 @@ public class UserController {
      */
 
     private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * This method is used to register a new user
@@ -70,7 +72,6 @@ public class UserController {
      */
     @PutMapping("/user/user_data")
     public ResponseEntity<Boolean> updateUserData(@RequestBody UserData request){
-        System.out.println(request.getUserId());
         return ResponseEntity.ok(userService.updateUserData(request.getUserId(), request.getFirstName(), request.getLastName(), request.getInfo()));
     }
 

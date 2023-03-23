@@ -125,7 +125,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean updateUserData(Integer userId, String firstName, String lastName, String info) {
         AdditionalUserData additionalUserData = new AdditionalUserData(userId, firstName, lastName, info);
-        System.out.println(additionalUserData);
         additionalUserDataRepository.save(additionalUserData);
         return true;
     }
