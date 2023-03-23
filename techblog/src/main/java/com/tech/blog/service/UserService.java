@@ -1,4 +1,6 @@
-package com.tech.blog.user;
+package com.tech.blog.service;
+
+import com.tech.blog.user.User;
 
 public interface UserService {
     /***
@@ -16,4 +18,6 @@ public interface UserService {
     User getUserByEmail(String email);
 
     boolean deleteUser(Integer IdUserAdmin, Integer IdUser);
+
+    boolean updateUserData(Integer userId, String firstName, String lastName, String info);
 }

@@ -1,5 +1,6 @@
-package com.tech.blog.user;
+package com.tech.blog.dao;
 
+import com.tech.blog.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

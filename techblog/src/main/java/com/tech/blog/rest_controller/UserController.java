@@ -1,16 +1,17 @@
 package com.tech.blog.rest_controller;
 
+import com.tech.blog.request_respone.UserData;
 import com.tech.blog.request_respone.UserDeleteRequest;
 import com.tech.blog.request_respone.UserIdRequest;
 import com.tech.blog.request_respone.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
-import com.tech.blog.user.UserService;
+import com.tech.blog.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequestMapping
 @RequiredArgsConstructor
 public class UserController {
@@ -60,6 +61,17 @@ public class UserController {
     @DeleteMapping("/user/delete_user")
     public ResponseEntity<Boolean> removeUser(@RequestBody UserDeleteRequest request){
         return ResponseEntity.ok(userService.deleteUser(request.getId(), request.getIdAdminUser()));
+    }
+
+    /**
+     * This method is used to update the information about a specific user
+     * @param request decoded data from JASON format
+     * @return a boolean representing the state of the update
+     */
+    @PutMapping("/user/user_data")
+    public ResponseEntity<Boolean> updateUserData(@RequestBody UserData request){
+        System.out.println(request.getUserId());
+        return ResponseEntity.ok(userService.updateUserData(request.getUserId(), request.getFirstName(), request.getLastName(), request.getInfo()));
     }
 
     /**

@@ -1,5 +1,10 @@
-package com.tech.blog.user;
+package com.tech.blog.service;
 
+import com.tech.blog.dao.AdditionalUserDataRepository;
+import com.tech.blog.dao.UserRepository;
+import com.tech.blog.user.AdditionalUserData;
+import com.tech.blog.user.Role;
+import com.tech.blog.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,11 +16,14 @@ public class UserServiceImpl implements UserService{
      * Holds teh business of a User logic.
      * For deleting a user only an ADMIN will be able to use that functionality.
      * @param userRepository used to communicate with the database
+     * @param additionalUserDataRepository used to communicate with the database
      */
     private final UserRepository userRepository;
+    private final AdditionalUserDataRepository additionalUserDataRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, AdditionalUserDataRepository additionalUserDataRepository) {
         this.userRepository = userRepository;
+        this.additionalUserDataRepository = additionalUserDataRepository;
     }
 
     /**
@@ -106,5 +114,19 @@ public class UserServiceImpl implements UserService{
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param firstName
+     * @param lastName
+     * @param info
+     * @return true if the data was updated successfully in the database
+     */
+    @Override
+    public boolean updateUserData(Integer userId, String firstName, String lastName, String info) {
+        AdditionalUserData additionalUserData = new AdditionalUserData(userId, firstName, lastName, info);
+        System.out.println(additionalUserData);
+        additionalUserDataRepository.save(additionalUserData);
+        return true;
     }
 }
