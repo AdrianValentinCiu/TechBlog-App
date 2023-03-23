@@ -26,18 +26,38 @@ public class TopicServiceImpl implements TopicService {
         this.topicMessageRepository = topicMessageRepository;
     }
 
+    /**
+     * This method is used to create a new topic
+     * @param topicTitle is the title of the new topic
+     * @param userAdminId is the admin of the person who created the topic
+     * @return true if the post was created successfully
+     */
     @Override
     public boolean createTopic(String topicTitle, Integer userAdminId) {
         topicRepository.save(new Topic(topicTitle, userAdminId));
         return true;
     }
 
+    /**
+     * This method is used to post a message on a specific topic
+     * @param topicId is the id of the topic
+     * @param msg is the message posted
+     * @param userId is the id of the user who posts a message on this topic
+     * @return true if the message was posted successfully on this topic
+     */
     @Override
     public boolean postMsgOnTopic(Integer topicId, String msg, Integer userId) {
         topicMessageRepository.save(new TopicMessage(msg, topicId, userId));
         return true;
     }
 
+    /**
+     * This method is used to like a message from a topic
+     * @param idMessage
+     * @param topicId
+     * @param userId
+     * @return
+     */
     @Override
     public boolean likeMsgOnTopic(Integer idMessage, Integer topicId, Integer userId) {
         Optional<TopicMessage> findTopicMessage = topicMessageRepository.findByIdMessageAndIdTopicAndIdUser(idMessage, topicId, userId);

@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Integer> {
+    /**
+     * This interface is used to extract the data form the database
+     */
 }

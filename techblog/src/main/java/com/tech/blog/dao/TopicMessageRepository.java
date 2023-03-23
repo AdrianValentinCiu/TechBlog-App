@@ -10,6 +10,10 @@ import java.util.Optional;
 @Repository
 public interface TopicMessageRepository extends JpaRepository<TopicMessage, Integer> {
     /**
+     * This interface is used to extract the data form the database
+     */
+
+    /**
      * This method is used to extract a posted message by a user from the database
      * @param idMessage is the topic of the id
      * @param idTopic is the topic of the id
