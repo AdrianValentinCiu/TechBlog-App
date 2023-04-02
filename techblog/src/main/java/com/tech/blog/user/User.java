@@ -1,10 +1,11 @@
 package com.tech.blog.user;
 
+import com.tech.blog.app_update.AppNewsObserver;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tbluser")
-public class User {
+public class User implements AppNewsObserver {
     /***
      * This class is used to define the data of a user in a table in the database
      */
@@ -70,5 +71,10 @@ public class User {
 
     public String toString(){
         return idUser + " " + isOnline + " " + email + " " + password + " " + userRole + "\n";
+    }
+
+    @Override
+    public void notify(String news) {
+        System.out.println(this.email);
     }
 }
