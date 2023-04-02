@@ -74,4 +74,76 @@ The purpose of this application is to enable users to find answears from real pr
 ![db_diagram](https://user-images.githubusercontent.com/111737211/225292495-4d65691f-2215-4c26-8fda-3304a194a285.svg)
 
 
+## Observer Design Pattern:
+For this application I used the Observer design pattern in order to notofy all users about the new updates in the app via their provided email address when creating a new account on the blog.
 
+## Endopoints:
+- POST: Register a new user
+http://localhost:8080/api/v1/auth/register
+- JASON example:
+{
+    "email" : "test",
+    "password" : "1234" 
+}
+
+- PUT: Login in a user:
+http://localhost:8080/api/v1/auth/login
+- JASON example:
+{
+    "email" : "adrian_ciu@yahoo.com",
+    "password" : "1234" 
+}
+
+- PUT: Log out a user:
+http://localhost:8080/api/v1/auth/logout
+- JASON example:
+{
+    "id" : "8" 
+}
+
+- DELETE: Delete a user by an admin:
+http://localhost:8080/api/v1/user/delete_user
+-JASON example:
+{
+    "id" : "5" ,
+    "idAdminUser" : "1" 
+}
+
+- GET: Get data about a specific user:
+http://localhost:8080/api/v1/user/user_data/4
+
+- PUT: Additional user data:
+http://localhost:8080/api/v1/user/user_data
+-JASON example:
+{
+    "userId" : 8,
+    "firstName" : "Adrian-Valentin",
+    "lastName" : "Ciu",
+    "info" : "Student at UTCN, CTI"
+}
+
+- POST: Create a new topic on the blog
+http://localhost:8080/api/v1/topic/create-topic
+-JASON example:
+{
+    "topicTitle" : "Topic test title",
+    "idUserPostAdmin" : 8
+}
+
+- POST: Post a new message on a specific topid:
+http://localhost:8080/api/v1/topic/post-message-topic
+-JASON example:
+{
+    "msgText" : "Second Msg",
+    "idTopic" : 1,
+    "idUser" : 8
+}
+
+- PUT: Like a message from a topic:
+http://localhost:8080/api/v1/topic/like-topic-message
+-JASON example:
+{
+    "idMessage" : 2, 
+    "idTopic" : 1,
+    "idUser" : 8
+}
