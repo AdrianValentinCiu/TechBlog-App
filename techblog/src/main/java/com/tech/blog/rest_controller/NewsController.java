@@ -1,8 +1,7 @@
 package com.tech.blog.rest_controller;
 
 import com.tech.blog.app_update.AppNewsObservableService;
-import com.tech.blog.request_respone.AppNewsRequest;
-import org.springframework.http.ResponseEntity;
+import com.tech.blog.rest_request.AppNewsRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

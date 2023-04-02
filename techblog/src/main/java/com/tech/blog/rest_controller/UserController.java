@@ -1,13 +1,12 @@
 package com.tech.blog.rest_controller;
 
-import com.tech.blog.request_respone.UserData;
-import com.tech.blog.request_respone.UserDeleteRequest;
-import com.tech.blog.request_respone.UserIdRequest;
-import com.tech.blog.request_respone.RegAuthRequest;
+import com.tech.blog.rest_request.UserDataRequest;
+import com.tech.blog.rest_request.UserDeleteRequest;
+import com.tech.blog.rest_request.UserIdRequest;
+import com.tech.blog.rest_request.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
 import com.tech.blog.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,7 +70,7 @@ public class UserController {
      * @return a boolean representing the state of the update
      */
     @PutMapping("/user/user_data")
-    public ResponseEntity<Boolean> updateUserData(@RequestBody UserData request){
+    public ResponseEntity<Boolean> updateUserData(@RequestBody UserDataRequest request){
         return ResponseEntity.ok(userService.updateUserData(request.getUserId(), request.getFirstName(), request.getLastName(), request.getInfo()));
     }
 

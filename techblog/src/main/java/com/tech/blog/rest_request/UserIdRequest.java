@@ -1,4 +1,4 @@
-package com.tech.blog.request_respone;
+package com.tech.blog.rest_request;
 
 public class UserIdRequest {
     /**

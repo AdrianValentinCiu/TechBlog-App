@@ -1,6 +1,6 @@
-package com.tech.blog.request_respone;
+package com.tech.blog.rest_request;
 
-public class UserData {
+public class UserDataRequest {
     /**
      * This class is used to store the data retriever from the REST Controller
      * The data is converted from JASON to the attributes specified in this class
@@ -11,9 +11,9 @@ public class UserData {
     private String lastName;
     private String info;
 
-    public UserData(){}
+    public UserDataRequest(){}
 
-    public UserData(Integer userId, String firstName, String lastName, String info) {
+    public UserDataRequest(Integer userId, String firstName, String lastName, String info) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
