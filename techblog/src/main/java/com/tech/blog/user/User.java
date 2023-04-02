@@ -75,8 +75,14 @@ public class User implements AppNewsObserver {
 
     @Override
     public void notify(String title, String news) {
-        EmailSender emailSender = new EmailSender();
-        emailSender.sendEmail(this.email, title, news);
         System.out.println(title + " " + news + " " + this.email);
+        EmailSender emailSender = new EmailSender();
+        try {
+            emailSender.sendEmail(this.email, title, news);
+        }
+        catch (Exception e){
+            System.out.println(e.getCause());
+        }
+
     }
 }
