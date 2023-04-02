@@ -78,7 +78,7 @@ The purpose of this application is to enable users to find answears from real pr
 For this application I used the Observer design pattern in order to notofy all users about the new updates in the app via their provided email address when creating a new account on the blog.
 
 ## Endopoints:
-- POST: Register a new user
+- POST: Register a new user:
 http://localhost:8080/api/v1/auth/register
 - JASON example:
 {
