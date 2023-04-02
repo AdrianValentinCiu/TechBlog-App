@@ -12,6 +12,8 @@ public class AppNewsRequest {
         this.appNews = appNews;
     }
 
+    public AppNewsRequest(){}
+
     public String getAppNews() {
         return appNews;
     }

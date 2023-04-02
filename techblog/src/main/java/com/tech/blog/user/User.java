@@ -75,6 +75,6 @@ public class User implements AppNewsObserver {
 
     @Override
     public void notify(String news) {
-        System.out.println(this.email);
+        System.out.println(news + " " + this.email);
     }
 }

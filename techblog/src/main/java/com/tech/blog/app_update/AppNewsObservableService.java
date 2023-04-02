@@ -1,5 +1,6 @@
 package com.tech.blog.app_update;
 
+import com.tech.blog.dao.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -7,9 +8,11 @@ import java.util.List;
 
 @Service
 public class AppNewsObservableService implements AppUserObservable{
+    private final UserRepository userRepository;
     private List<AppNewsObserver> notifyUserAppUpdates;
 
-    public AppNewsObservableService() {
+    public AppNewsObservableService(UserRepository userRepository) {
+        this.userRepository = userRepository;
         this.notifyUserAppUpdates = new LinkedList<>();
     }
 
@@ -24,7 +27,7 @@ public class AppNewsObservableService implements AppUserObservable{
     }
     @Override
     public void setNewUpdate(String newUpdate){
-        for(AppNewsObserver notifyUserAppUpdate : notifyUserAppUpdates)
+        for(AppNewsObserver notifyUserAppUpdate : userRepository.findAll())
         {
             notifyUserAppUpdate.notify(newUpdate);
         }
