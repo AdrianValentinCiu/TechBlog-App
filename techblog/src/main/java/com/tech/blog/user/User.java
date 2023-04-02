@@ -1,10 +1,11 @@
 package com.tech.blog.user;
 
+import com.tech.blog.email_send.EmailSender;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tbluser")
-public class User {
+public class User implements AppNewsObserver {
     /***
      * This class is used to define the data of a user in a table in the database
      */
@@ -70,5 +71,24 @@ public class User {
 
     public String toString(){
         return idUser + " " + isOnline + " " + email + " " + password + " " + userRole + "\n";
+    }
+
+    /**
+     * This method is used to implement the method notify used in the design pattern Observer
+     * @param title the title of the user notification via email
+     * @param news the body of the user notification via email
+     */
+    @Override
+    public void notify(String title, String news) {
+        if(this.userRole == Role.USER){
+            EmailSender emailSender = new EmailSender();
+            try {
+                emailSender.sendEmail(this.email, title, news);
+            }
+            catch (Exception e){
+                System.out.println(e.getCause());
+            }
+        }
+
     }
 }

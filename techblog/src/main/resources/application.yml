@@ -20,3 +20,4 @@ spring:
         format_sql: true
     #database: mssql
     database-platform: org.hibernate.dialect.SQLServerDialect
+
