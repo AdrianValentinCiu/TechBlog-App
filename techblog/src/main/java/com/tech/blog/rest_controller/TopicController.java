@@ -3,7 +3,7 @@ package com.tech.blog.rest_controller;
 import com.tech.blog.rest_request.TopicLikeMessageRequest;
 import com.tech.blog.rest_request.TopicMessageRequest;
 import com.tech.blog.rest_request.TopicRequest;
-import com.tech.blog.service.TopicService;
+import com.tech.blog.service.topic.TopicService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

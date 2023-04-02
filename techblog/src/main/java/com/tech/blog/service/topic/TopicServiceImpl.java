@@ -1,4 +1,4 @@
-package com.tech.blog.service;
+package com.tech.blog.service.topic;
 
 import com.tech.blog.dao.TopicMessageRepository;
 import com.tech.blog.dao.TopicRepository;

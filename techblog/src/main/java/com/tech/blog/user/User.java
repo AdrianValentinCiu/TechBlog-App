@@ -1,6 +1,6 @@
 package com.tech.blog.user;
 
-import com.tech.blog.app_update.AppNewsObserver;
+import com.tech.blog.email_send.EmailSender;
 import jakarta.persistence.*;
 
 @Entity
@@ -74,7 +74,9 @@ public class User implements AppNewsObserver {
     }
 
     @Override
-    public void notify(String news) {
-        System.out.println(news + " " + this.email);
+    public void notify(String title, String news) {
+        EmailSender emailSender = new EmailSender();
+        emailSender.sendEmail(this.email, title, news);
+        System.out.println(title + " " + news + " " + this.email);
     }
 }

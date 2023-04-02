@@ -1,4 +1,4 @@
-package com.tech.blog.service;
+package com.tech.blog.service.topic;
 
 public interface TopicService {
     /**

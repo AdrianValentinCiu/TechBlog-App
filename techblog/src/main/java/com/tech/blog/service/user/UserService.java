@@ -1,6 +1,8 @@
-package com.tech.blog.service;
+package com.tech.blog.service.user;
 
 import com.tech.blog.user.User;
+
+import java.util.List;
 
 public interface UserService {
     /***
@@ -16,6 +18,8 @@ public interface UserService {
     User getUserById(Integer IdUser);
 
     User getUserByEmail(String email);
+
+    List<User> getAllUsers();
 
     boolean deleteUser(Integer IdUserAdmin, Integer IdUser);
 

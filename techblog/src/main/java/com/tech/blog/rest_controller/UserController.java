@@ -6,7 +6,7 @@ import com.tech.blog.rest_request.UserIdRequest;
 import com.tech.blog.rest_request.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
-import com.tech.blog.service.UserService;
+import com.tech.blog.service.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
