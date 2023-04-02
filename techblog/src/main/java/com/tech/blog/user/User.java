@@ -73,15 +73,21 @@ public class User implements AppNewsObserver {
         return idUser + " " + isOnline + " " + email + " " + password + " " + userRole + "\n";
     }
 
+    /**
+     * This method is used to implement the method notify used in the design pattern Observer
+     * @param title the title of the user notification via email
+     * @param news the body of the user notification via email
+     */
     @Override
     public void notify(String title, String news) {
-        System.out.println(title + " " + news + " " + this.email);
-        EmailSender emailSender = new EmailSender();
-        try {
-            emailSender.sendEmail(this.email, title, news);
-        }
-        catch (Exception e){
-            System.out.println(e.getCause());
+        if(this.userRole == Role.USER){
+            EmailSender emailSender = new EmailSender();
+            try {
+                emailSender.sendEmail(this.email, title, news);
+            }
+            catch (Exception e){
+                System.out.println(e.getCause());
+            }
         }
 
     }

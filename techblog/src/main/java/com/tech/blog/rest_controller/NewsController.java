@@ -22,6 +22,10 @@ public class NewsController {
         this.userService = userService;
     }
 
+    /**
+     * This method is used to email all users using the design pattern Observer
+     * @param request decoded data from JASON format
+     */
     @PostMapping("/new-update")
     public void updateNews(@RequestBody AppNewsRequest request){
         userService.setNewUpdate(request.getTitle(), request.getAppNews());

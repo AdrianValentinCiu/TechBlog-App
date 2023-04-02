@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      * This class is used to implement all the functionality a user can have regarding accessing the database.
      * Holds teh business of a User logic.
      * For deleting a user only an ADMIN will be able to use that functionality.
+     * This clas also implements the Observable interface for the design pattern Observer
      * @param userRepository used to communicate with the database
      * @param additionalUserDataRepository used to communicate with the database
      */
