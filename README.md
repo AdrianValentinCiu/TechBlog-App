@@ -77,6 +77,9 @@ The purpose of this application is to enable users to find answears from real pr
 ## Observer Design Pattern:
 For this application I used the Observer design pattern in order to notofy all users about the new updates in the app via their provided email address when creating a new account on the blog.
 
+## Singleton Design Pattern:
+For this application I used the Singleton design pattern in order to have only one instance of the class EmaiSender beacuse emails are sent one by one using the design pattern Observer.
+
 ## Endopoints:
 - POST: Register a new user:
 http://localhost:8080/api/v1/auth/register
