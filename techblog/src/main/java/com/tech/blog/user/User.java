@@ -81,7 +81,7 @@ public class User implements AppNewsObserver {
     @Override
     public void notify(String title, String news) {
         if(this.userRole == Role.USER){
-            EmailSender emailSender = new EmailSender();
+            EmailSender emailSender = EmailSender.getEmailInstance();
             try {
                 emailSender.sendEmail(this.email, title, news);
             }
