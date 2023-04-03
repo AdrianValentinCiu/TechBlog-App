@@ -6,16 +6,28 @@ import javax.mail.internet.*;
 public class EmailSender {
     /***
      * This class is used to email a user
+     * It implements the design pattern Singleton
      */
 
     private Properties properties;
-
-    public EmailSender() {
+    private static EmailSender emailSender;
+    private EmailSender() {
         properties = new Properties();
         properties.setProperty("mail.smtp.host", "localhost");
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.port", "1025");
         properties.setProperty("mail.smtp.starttls.enable", "true");
+    }
+
+    /**
+     * Singleton getInstance method
+     * @return the instance of EmailSender
+     */
+    public static EmailSender getEmailInstance(){
+        if(emailSender == null){
+            emailSender = new EmailSender();
+        }
+        return emailSender;
     }
 
     /**
