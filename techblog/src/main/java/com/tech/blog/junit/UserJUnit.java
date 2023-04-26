@@ -1,10 +1,10 @@
 package com.tech.blog.junit;
 
-public class User {
+public class UserJUnit {
     private String nume;
     private Risk risk;
 
-    public User(String nume, Risk risk) {
+    public UserJUnit(String nume, Risk risk) {
         this.nume = nume;
         this.risk = risk;
     }
