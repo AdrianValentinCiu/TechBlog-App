@@ -50,8 +50,7 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     @Override
     public boolean logout(Integer IdUser) {
-        User user = getUserById(IdUser);
-        System.out.println(user);
+        User user = userRepository.findById(IdUser).orElse(null);
         return setUserState(user, true);
     }
 
@@ -76,8 +75,8 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     @Override
     public boolean register(User user) {
-        User findUSer = getUserByEmail(user.getEmail());
-        if(findUSer == null) {
+        User findUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if(findUser == null) {
             userRepository.save(user);
             return true;
         }
@@ -95,7 +94,7 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
 
     /**
      * @param email the email of the user we want to return from the database
-     * @return he user details from teh database
+     * @return the user details from teh database
      */
     @Override
     public User getUserByEmail(String email) {
@@ -119,8 +118,8 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     @Override
     public boolean deleteUser(Integer IdDelAdmin, Integer IdAdminUser) {
-        User delUser = getUserById(IdDelAdmin);
-        User adminUser = getUserById(IdAdminUser);
+        User delUser = userRepository.findById(IdDelAdmin).orElse(null);
+        User adminUser = userRepository.findById(IdAdminUser).orElse(null);
         if(adminUser != null && delUser != null && adminUser.getRole().equals(Role.ADMIN) && delUser.getRole().equals(Role.USER)) {
             userRepository.deleteById(IdDelAdmin);
             return true;
