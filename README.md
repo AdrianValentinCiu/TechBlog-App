@@ -150,3 +150,6 @@ http://localhost:8080/api/v1/topic/like-topic-message
     "idTopic" : 1,
     "idUser" : 8
 }
+
+## JUnit Testing:
+I created three diffrent test classes for the interfaces UseeService, AppNewsObserver and TopicService in order to be able to test the functionalities of the classes which implmented those interfaces.
