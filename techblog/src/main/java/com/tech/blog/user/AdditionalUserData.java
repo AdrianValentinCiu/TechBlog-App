@@ -2,6 +2,8 @@ package com.tech.blog.user;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tbladditionaluserdata")
 public class AdditionalUserData {
@@ -58,5 +60,18 @@ public class AdditionalUserData {
 
     public String toString(){
         return idAdditionalData + " " + firstName + " " + lastName + " " + info + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdditionalUserData that = (AdditionalUserData) o;
+        return Objects.equals(idAdditionalData, that.idAdditionalData) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(info, that.info);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAdditionalData, firstName, lastName, info);
     }
 }

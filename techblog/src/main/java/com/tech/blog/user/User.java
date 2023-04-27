@@ -3,6 +3,8 @@ package com.tech.blog.user;
 import com.tech.blog.email_send.EmailSender;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tbluser")
 public class User implements AppNewsObserver {
@@ -20,6 +22,14 @@ public class User implements AppNewsObserver {
     private Role userRole;
 
     public User(boolean isOnline, String email, String password, Role userRole) {
+        this.isOnline = isOnline;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+    }
+
+    public User(Integer idUser, boolean isOnline, String email, String password, Role userRole) {
+        this.idUser = idUser;
         this.isOnline = isOnline;
         this.email = email;
         this.password = password;
@@ -90,5 +100,18 @@ public class User implements AppNewsObserver {
             }
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return isOnline == user.isOnline && Objects.equals(idUser, user.idUser) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && userRole == user.userRole;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUser, isOnline, email, password, userRole);
     }
 }
