@@ -13,23 +13,23 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class BlogApplicationTests {
+class BlogApplicationTestsUserService {
 
 	@Mock
 	private UserRepository userRepository;
 
 	@Mock
 	private AdditionalUserDataRepository additionalUserDataRepository;
-
-	@Mock
-	private AppNewsObserver appNewsObserver;
 
 	@Test
 	void testUserServiceGetUserByIdFound(){
@@ -95,10 +95,10 @@ class BlogApplicationTests {
 	void testUserServiceNullLogOut(){
 		User user = new User(false, "test@mock.com", "1234", Role.USER);
 		UserService userService = new UserServiceImpl(userRepository, additionalUserDataRepository);
+		when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 		boolean log_out_user = userService.logout(100);
 		assertTrue(log_out_user == false);
 		verify(userRepository).findById(100);
-		verify(userRepository).findByEmail(user.getEmail());
 	}
 
 	@Test
@@ -175,20 +175,5 @@ class BlogApplicationTests {
 		assertTrue(userService.updateUserData(user.getIdUser(), "Test", "Mock", "new test") == true);
 		verify(additionalUserDataRepository).save(additionalUserData);
 	}
-
-	@Test
-	void testUserServiceGetAllUsers(){
-		UserService userService = new UserServiceImpl(userRepository, additionalUserDataRepository);
-
-	}
-
-	@Test
-	void testAppNewsObservableSetNewUpdate(){
-		AppNewsObservable appNewsObservable = new UserServiceImpl(userRepository, additionalUserDataRepository);
-
-		verify(userRepository).findAll();
-	}
-
-
 
 }

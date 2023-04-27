@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
     @Override
     public boolean logout(Integer IdUser) {
         User user = userRepository.findById(IdUser).orElse(null);
-        //System.out.println(user);
         return setUserState(user, true);
     }
 
