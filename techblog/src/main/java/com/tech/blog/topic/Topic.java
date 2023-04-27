@@ -2,6 +2,8 @@ package com.tech.blog.topic;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tbltopic")
 public class Topic {
@@ -43,5 +45,18 @@ public class Topic {
 
     public void setIdUserPostAdmin(Integer idUserPostAdmin) {
         this.idUserPostAdmin = idUserPostAdmin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Topic topic = (Topic) o;
+        return Objects.equals(idTopic, topic.idTopic) && Objects.equals(topicTitle, topic.topicTitle) && Objects.equals(idUserPostAdmin, topic.idUserPostAdmin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idTopic, topicTitle, idUserPostAdmin);
     }
 }
