@@ -6,6 +6,7 @@ import com.tech.blog.topic.Topic;
 import com.tech.blog.topic.TopicMessage;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -70,4 +71,25 @@ public class TopicServiceImpl implements TopicService {
         }
         return false;
     }
+
+
+    /**
+     * This method is used to retreive all the topics from the database in order to be displayed in the user interface
+     * @return all the topics from the database
+     */
+    @Override
+    public List<Topic> getTopics() {
+        return topicRepository.findAll();
+    }
+
+    /**
+     * This method is used to retreive all the messages sent to a specific topic
+     * @param topicId the id of the topic
+     * @return
+     */
+    @Override
+    public List<TopicMessage> getTopicMessages(Integer topicId) {
+        return null;
+    }
+
 }

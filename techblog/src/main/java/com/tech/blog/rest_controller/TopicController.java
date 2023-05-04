@@ -4,11 +4,15 @@ import com.tech.blog.rest_request.TopicLikeMessageRequest;
 import com.tech.blog.rest_request.TopicMessageRequest;
 import com.tech.blog.rest_request.TopicRequest;
 import com.tech.blog.service.topic.TopicService;
+import com.tech.blog.topic.Topic;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/topic")
+@CrossOrigin("*")
 public class TopicController {
     /**
      * This class is used to implement the REST controller, using the endpoints: GET, POST, PUT, DELETE
@@ -19,6 +23,16 @@ public class TopicController {
 
     public TopicController(TopicService topicService) {
         this.topicService = topicService;
+    }
+
+    /**
+     * This method is used to retreive all the topics
+     * @return is a list with all the topics form the database
+     */
+    @GetMapping("/topics")
+    public List<Topic> getTopics(){
+        return topicService.getTopics();
+
     }
 
     /**
