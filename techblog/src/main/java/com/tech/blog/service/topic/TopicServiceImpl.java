@@ -89,7 +89,12 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public List<TopicMessage> getTopicMessages(Integer topicId) {
+        Optional<List<TopicMessage>> topicMessages = topicMessageRepository.findByTopicId(topicId);
+        if(topicMessages!=null){
+            return topicMessages.get();
+        }
         return null;
     }
+
 
 }
