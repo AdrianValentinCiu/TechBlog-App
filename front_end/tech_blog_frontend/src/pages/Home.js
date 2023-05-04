@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom" 
+import TopicMessages from "./TopicMessages"
 
 function Home() {
   const [topics, setTopics] = useState([]);
-  const [topicMessages, setTopicMessages] = useState([]);
+  const [user, setUser] = useState([]);
+
 
   const getTopics = () => {
     axios
@@ -17,11 +20,11 @@ function Home() {
     });
   }
 
-  function getTopicMessages(event, TopicId){
+  function getUser(event, userId){
     axios
-    .get(`http://localhost:8080/api/v1/topic/topic-messages/${TopicId}`)
+    .get(`http://localhost:8080/api/v1/user/user_data/${userId}`)
     .then((response) => {
-      setTopicMessages(response.data);
+      setUser(response.data);
       console.log(response.data);
     })
     .catch((err) => {
@@ -30,14 +33,17 @@ function Home() {
   }
 
   useEffect(() => {
-    getTopics()
+    getTopics() 
   }, [])
-
+//<a href = {`http://localhost:3000/`} onClick={(event) => getTopicMessages(event, topic.idTopic)} > 
   return (
    <div>
       <ul>
         {topics.map(topic => (
-          <li key={topic.idTopic}><a href = {`http://localhost:3000/date/${topic.topicTitle}`} onClick={(event) => getTopicMessages(event, topic.idTopic)}> {topic.topicTitle} </a> {'@'} {topic.idUserPostAdmin}</li>
+          <li key={topic.idTopic}>
+            <Link to={`/topic_messages/${topic.idTopic}`} state={{ topic: topic }}> {topic.topicTitle} </Link>
+            {'@'} {topic.idTopic}
+          </li>
         ))}
       </ul>
     </div>
