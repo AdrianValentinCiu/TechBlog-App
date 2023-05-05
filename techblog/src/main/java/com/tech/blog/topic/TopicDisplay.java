@@ -11,19 +11,19 @@ public class TopicDisplay {
      * This class is used to retreive all the data about a topic from the database
      */
     @Id
-    private String idTopic;
+    private Integer idTopic;
     private String topicTitle;
     private String fullName;
 
     public TopicDisplay(){}
 
-    public TopicDisplay(String idTopic, String topicTitle, String fullName) {
+    public TopicDisplay(Integer idTopic, String topicTitle, String fullName) {
         this.idTopic = idTopic;
         this.topicTitle = topicTitle;
         this.fullName = fullName;
     }
 
-    public String getIdTopic() {
+    public Integer getIdTopic() {
         return idTopic;
     }
 
@@ -35,7 +35,7 @@ public class TopicDisplay {
         return fullName;
     }
 
-    public void setIdTopic(String idTopic) {
+    public void setIdTopic(Integer idTopic) {
         this.idTopic = idTopic;
     }
 
