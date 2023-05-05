@@ -5,7 +5,9 @@ import com.tech.blog.rest_request.TopicMessageRequest;
 import com.tech.blog.rest_request.TopicRequest;
 import com.tech.blog.service.topic.TopicService;
 import com.tech.blog.topic.Topic;
+import com.tech.blog.topic.TopicDisplay;
 import com.tech.blog.topic.TopicMessage;
+import com.tech.blog.topic.TopicMessageDisplay;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +33,7 @@ public class TopicController {
      * @return a list with all the topics form the database
      */
     @GetMapping("/topics")
-    public List<Topic> getTopics(){
+    public List<TopicDisplay> getTopics(){
         return topicService.getTopics();
 
     }
@@ -41,7 +43,7 @@ public class TopicController {
      * @return a list with all the messages from a specific topic
      */
     @GetMapping("/topic-messages/{topic_id}")
-    public List<TopicMessage> getTopicMessages(@PathVariable Integer topic_id){
+    public List<TopicMessageDisplay> getTopicMessages(@PathVariable Integer topic_id){
         return topicService.getTopicMessages(topic_id);
 
     }

@@ -1,6 +1,7 @@
 package com.tech.blog.service.user;
 
 import com.tech.blog.user.User;
+import com.tech.blog.user.UserDisplay;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface UserService {
 
     boolean register(User user);
 
-    User getUserById(Integer IdUser);
+    UserDisplay getUserById(Integer IdUser);
 
     User getUserByEmail(String email);
 

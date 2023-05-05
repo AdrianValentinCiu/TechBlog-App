@@ -24,11 +24,6 @@ public interface TopicMessageRepository extends JpaRepository<TopicMessage, Inte
     Optional<TopicMessage> findByIdMessageAndIdTopicAndIdUser(Integer idMessage, Integer idTopic, Integer idUser);
 
 
-    /**
-     * @param topicId the id of the topic
-     * @return a list with all the messages from a specific topic
-     */
-    @Query(nativeQuery = true, value = "EXEC dbo.GetTopicMessages ?1")
-    Optional<List<TopicMessage>> findByTopicId(Integer topicId);
+
 
 }

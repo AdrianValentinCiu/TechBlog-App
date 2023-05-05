@@ -2,10 +2,8 @@ package com.tech.blog.service.user;
 
 import com.tech.blog.dao.AdditionalUserDataRepository;
 import com.tech.blog.dao.UserRepository;
-import com.tech.blog.user.AdditionalUserData;
-import com.tech.blog.user.AppNewsObserver;
-import com.tech.blog.user.Role;
-import com.tech.blog.user.User;
+import com.tech.blog.dao.UserRepositoryDisplay;
+import com.tech.blog.user.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,10 +21,12 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     private final UserRepository userRepository;
     private final AdditionalUserDataRepository additionalUserDataRepository;
+    private final UserRepositoryDisplay userRepositoryDisplay;
 
-    public UserServiceImpl(UserRepository userRepository, AdditionalUserDataRepository additionalUserDataRepository) {
+    public UserServiceImpl(UserRepository userRepository, AdditionalUserDataRepository additionalUserDataRepository, UserRepositoryDisplay userRepositoryDisplay) {
         this.userRepository = userRepository;
         this.additionalUserDataRepository = additionalUserDataRepository;
+        this.userRepositoryDisplay = userRepositoryDisplay;
     }
 
     /**
@@ -88,8 +88,8 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      * @return the user details from teh database
      */
     @Override
-    public User getUserById(Integer IdUser){
-        return  userRepository.findById(IdUser).orElse(null);
+    public UserDisplay getUserById(Integer IdUser){
+        return  userRepositoryDisplay.findUserById(IdUser).orElse(null);
     }
 
     /**

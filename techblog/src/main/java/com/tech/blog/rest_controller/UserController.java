@@ -7,8 +7,11 @@ import com.tech.blog.rest_request.RegAuthRequest;
 import com.tech.blog.user.Role;
 import com.tech.blog.user.User;
 import com.tech.blog.service.user.UserService;
+import com.tech.blog.user.UserDisplay;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -80,9 +83,21 @@ public class UserController {
      * @param user_id is the id of the user we want to retreive the data
      * @return JASON format of all the information about the specified user
      */
-    @GetMapping("/user/user_data/{user_id}")
+    @GetMapping("/user/{user_id}")
     @ResponseBody
-    public User dataUser(@PathVariable Integer user_id){
+    public UserDisplay dataUser(@PathVariable Integer user_id){
         return userService.getUserById(user_id);
     }
+
+    /**
+     * This method is used to extract all the users from the database
+     * @return the list with all the users from the database
+     */
+    @GetMapping("/user/users")
+    @ResponseBody
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
+
 }

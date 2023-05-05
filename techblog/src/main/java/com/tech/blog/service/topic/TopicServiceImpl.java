@@ -1,9 +1,13 @@
 package com.tech.blog.service.topic;
 
 import com.tech.blog.dao.TopicMessageRepository;
+import com.tech.blog.dao.TopicMessagesRepositoryDisplay;
 import com.tech.blog.dao.TopicRepository;
+import com.tech.blog.dao.TopicRepositoryDisplay;
 import com.tech.blog.topic.Topic;
+import com.tech.blog.topic.TopicDisplay;
 import com.tech.blog.topic.TopicMessage;
+import com.tech.blog.topic.TopicMessageDisplay;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +25,14 @@ public class TopicServiceImpl implements TopicService {
 
     private TopicRepository topicRepository;
     private TopicMessageRepository topicMessageRepository;
+    private TopicMessagesRepositoryDisplay topicMessageDisplay;
+    private TopicRepositoryDisplay topicRepositoryDisplay;
 
-    public TopicServiceImpl(TopicRepository topicRepository, TopicMessageRepository topicMessageRepository) {
+    public TopicServiceImpl(TopicRepository topicRepository, TopicMessageRepository topicMessageRepository, TopicMessagesRepositoryDisplay topicMessageDisplay, TopicRepositoryDisplay topicRepositoryDisplay) {
         this.topicRepository = topicRepository;
         this.topicMessageRepository = topicMessageRepository;
+        this.topicMessageDisplay = topicMessageDisplay;
+        this.topicRepositoryDisplay = topicRepositoryDisplay;
     }
 
     /**
@@ -78,8 +86,11 @@ public class TopicServiceImpl implements TopicService {
      * @return all the topics from the database
      */
     @Override
-    public List<Topic> getTopics() {
-        return topicRepository.findAll();
+    public List<TopicDisplay> getTopics() {
+        Optional<List<TopicDisplay>> topics =  topicRepositoryDisplay.findByTopicId();
+        if(topics!=null)
+            return topics.get();
+        return null;
     }
 
     /**
@@ -88,8 +99,8 @@ public class TopicServiceImpl implements TopicService {
      * @return
      */
     @Override
-    public List<TopicMessage> getTopicMessages(Integer topicId) {
-        Optional<List<TopicMessage>> topicMessages = topicMessageRepository.findByTopicId(topicId);
+    public List<TopicMessageDisplay> getTopicMessages(Integer topicId) {
+        Optional<List<TopicMessageDisplay>> topicMessages = topicMessageDisplay.findMessagesByTopicId(topicId);
         if(topicMessages!=null){
             return topicMessages.get();
         }

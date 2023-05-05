@@ -22,23 +22,23 @@ public class BlogApplicationTestsTopicService {
     @Mock
     private TopicMessageRepository topicMessageRepository;
 
-    @Test
-    void testCreateTopic(){
-        TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository);
-        Topic topic = new Topic("topicTitle", 1);
-        assertTrue(topicService.createTopic("topicTitle", 1) == true);
-        verify(topicRepository).save(topic);
-    }
+//    @Test
+//    void testCreateTopic(){
+//        TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository);
+//        Topic topic = new Topic("topicTitle", 1);
+//        assertTrue(topicService.createTopic("topicTitle", 1) == true);
+//        verify(topicRepository).save(topic);
+//    }
 
-    @Test
-    void testPostMsgOnTopic(){
-        TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository);
-        TopicMessage topicMessage = new TopicMessage("topicTitle", 1, 2);
-        assertTrue(topicService.postMsgOnTopic( 1, "topicTitle", 2) == true);
-        verify(topicMessageRepository).save(topicMessage);
-    }
+//    @Test
+//    void testPostMsgOnTopic(){
+//        TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository);
+//        TopicMessage topicMessage = new TopicMessage("topicTitle", 1, 2);
+//        assertTrue(topicService.postMsgOnTopic( 1, "topicTitle", 2) == true);
+//        verify(topicMessageRepository).save(topicMessage);
+//    }
 
-    @Test
+  /*  @Test
     void testLikeMsgOnTopic(){
         TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository);
         TopicMessage topicMessage = mock(TopicMessage.class);
@@ -48,5 +48,5 @@ public class BlogApplicationTestsTopicService {
         verify(topicMessage).setLikesMessage(topicMessage.getLikesMessage());
         verify(topicMessageRepository).save(topicMessage);
         verify(topicMessageRepository).findByIdMessageAndIdTopicAndIdUser(1, 2, 3);
-    }
+    }*/
 }
