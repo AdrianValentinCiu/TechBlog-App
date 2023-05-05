@@ -3,10 +3,12 @@ package com.tech.blog;
 import com.tech.blog.dao.AdditionalUserDataRepository;
 import com.tech.blog.dao.UserRepository;
 import com.tech.blog.dao.UserRepositoryDisplay;
-import com.tech.blog.service.user.AppNewsObservable;
 import com.tech.blog.service.user.UserService;
 import com.tech.blog.service.user.UserServiceImpl;
-import com.tech.blog.user.*;
+import com.tech.blog.user.AdditionalUserData;
+import com.tech.blog.user.Role;
+import com.tech.blog.user.User;
+import com.tech.blog.user.UserDisplay;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +17,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
@@ -175,6 +176,22 @@ class BlogApplicationTestsUserService {
 		UserService userService = new UserServiceImpl(userRepository, additionalUserDataRepository, userRepositoryDisplay);
 		assertTrue(userService.updateUserData(user.getIdUser(), "Test", "Mock", "new test") == true);
 		verify(additionalUserDataRepository).save(additionalUserData);
+	}
+
+	@Test
+	void testUserServiceGetAllUsers(){
+		User user1 = new User(5, true, "test1@mock.com", "1234", Role.USER);
+		User user2 = new User(5, true, "test2@mock.com", "1234", Role.USER);
+		User user3 = new User(5, true, "test3@mock.com", "1234", Role.USER);
+		List<User> users = new LinkedList<User>();
+		users.add(user1);
+		users.add(user2);
+		users.add(user3);
+		UserService userService = new UserServiceImpl(userRepository, additionalUserDataRepository, userRepositoryDisplay);
+		when(userRepository.findAll()).thenReturn(users);
+		List<User> testUsers = userService.getAllUsers();
+		assertTrue(testUsers == users);
+		verify(userRepository).findAll();
 	}
 
 }
