@@ -33,8 +33,8 @@ public class BlogApplicationTestsAppNewsObserver {
         List<User> appNewsObservableUsers = new LinkedList<>();
         User user1 = mock(User.class);
         User user2 = mock(User.class);
-        doNothing().when(user1).notify("title", "newUpdate");
-        doNothing().when(user2).notify("title", "newUpdate");
+        //doNothing().when(user1).notify("title", "newUpdate");
+        //doNothing().when(user2).notify("title", "newUpdate");
         appNewsObservableUsers.add(user1);
         appNewsObservableUsers.add(user2);
         when(userRepository.findAll()).thenReturn(appNewsObservableUsers);
