@@ -1,11 +1,16 @@
 package com.tech.blog.service.topic;
 
 import com.tech.blog.dao.TopicMessageRepository;
+import com.tech.blog.dao.TopicMessagesRepositoryDisplay;
 import com.tech.blog.dao.TopicRepository;
+import com.tech.blog.dao.TopicRepositoryDisplay;
 import com.tech.blog.topic.Topic;
+import com.tech.blog.topic.TopicDisplay;
 import com.tech.blog.topic.TopicMessage;
+import com.tech.blog.topic.TopicMessageDisplay;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,10 +25,14 @@ public class TopicServiceImpl implements TopicService {
 
     private TopicRepository topicRepository;
     private TopicMessageRepository topicMessageRepository;
+    private TopicMessagesRepositoryDisplay topicMessageDisplay;
+    private TopicRepositoryDisplay topicRepositoryDisplay;
 
-    public TopicServiceImpl(TopicRepository topicRepository, TopicMessageRepository topicMessageRepository) {
+    public TopicServiceImpl(TopicRepository topicRepository, TopicMessageRepository topicMessageRepository, TopicMessagesRepositoryDisplay topicMessageDisplay, TopicRepositoryDisplay topicRepositoryDisplay) {
         this.topicRepository = topicRepository;
         this.topicMessageRepository = topicMessageRepository;
+        this.topicMessageDisplay = topicMessageDisplay;
+        this.topicRepositoryDisplay = topicRepositoryDisplay;
     }
 
     /**
@@ -70,4 +79,33 @@ public class TopicServiceImpl implements TopicService {
         }
         return false;
     }
+
+
+    /**
+     * This method is used to retreive all the topics from the database in order to be displayed in the user interface
+     * @return all the topics from the database
+     */
+    @Override
+    public List<TopicDisplay> getTopics() {
+        Optional<List<TopicDisplay>> topics =  topicRepositoryDisplay.findByTopicId();
+        if(topics!=null)
+            return topics.get();
+        return null;
+    }
+
+    /**
+     * This method is used to retreive all the messages sent to a specific topic
+     * @param topicId the id of the topic
+     * @return
+     */
+    @Override
+    public List<TopicMessageDisplay> getTopicMessages(Integer topicId) {
+        Optional<List<TopicMessageDisplay>> topicMessages = topicMessageDisplay.findMessagesByTopicId(topicId);
+        if(topicMessages!=null){
+            return topicMessages.get();
+        }
+        return null;
+    }
+
+
 }

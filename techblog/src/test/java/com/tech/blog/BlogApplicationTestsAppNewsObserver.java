@@ -2,6 +2,7 @@ package com.tech.blog;
 
 import com.tech.blog.dao.AdditionalUserDataRepository;
 import com.tech.blog.dao.UserRepository;
+import com.tech.blog.dao.UserRepositoryDisplay;
 import com.tech.blog.service.user.AppNewsObservable;
 import com.tech.blog.service.user.UserServiceImpl;
 import com.tech.blog.user.User;
@@ -23,9 +24,12 @@ public class BlogApplicationTestsAppNewsObserver {
     @Mock
     private AdditionalUserDataRepository additionalUserDataRepository;
 
+    @Mock
+    private UserRepositoryDisplay userRepositoryDisplay;
+
     @Test
     void testAppNewsObservableSetNewUpdate(){
-        AppNewsObservable appNewsObservable = new UserServiceImpl(userRepository, additionalUserDataRepository);
+        AppNewsObservable appNewsObservable = new UserServiceImpl(userRepository, additionalUserDataRepository, userRepositoryDisplay);
         List<User> appNewsObservableUsers = new LinkedList<>();
         User user1 = mock(User.class);
         User user2 = mock(User.class);
