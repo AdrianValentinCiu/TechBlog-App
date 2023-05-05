@@ -41,11 +41,14 @@ public class UserController {
     /**
      * This method is used to log in a user if it is not already logged in
      * @param request decoded data from JASON format
-     * @return a boolean representing the state of the user: logged in (true) or logged off (false)
+     * @return the data about the user
      */
     @PutMapping("/auth/login")
-    public ResponseEntity<Boolean> login(@RequestBody RegAuthRequest request){
-        return ResponseEntity.ok(userService.login(request.getEmail(), request.getPassword()));
+    public User login(@RequestBody RegAuthRequest request){
+        if(userService.login(request.getEmail(), request.getPassword()) == true)
+            return userService.getUserByEmail(request.getEmail());
+        else
+            return null;
     }
 
     /**

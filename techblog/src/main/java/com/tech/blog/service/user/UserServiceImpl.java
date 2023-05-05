@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     @Override
     public UserDisplay getUserById(Integer IdUser){
-        return  userRepositoryDisplay.findUserById(IdUser).orElse(null);
+        return  userRepositoryDisplay.findUserById (IdUser).orElse(null);
     }
 
     /**
