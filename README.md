@@ -81,42 +81,36 @@ For this application I used the Observer design pattern in order to notofy all u
 For this application I used the Singleton design pattern in order to have only one instance of the class EmaiSender beacuse emails are sent one by one using the design pattern Observer.
 
 ## Endopoints:
-- POST: Register a new user:
-http://localhost:8080/api/v1/auth/register
+- POST: http://localhost:8080/api/v1/auth/register -> Register a new user
 - JASON example:
 {
     "email" : "test",
     "password" : "1234" 
 }
 
-- PUT: Login in a user:
-http://localhost:8080/api/v1/auth/login
+- PUT: http://localhost:8080/api/v1/auth/login -> Login in a user
 - JASON example:
 {
     "email" : "adrian_ciu@yahoo.com",
     "password" : "1234" 
 }
 
-- PUT: Log out a user:
-http://localhost:8080/api/v1/auth/logout
+- PUT: http://localhost:8080/api/v1/auth/logout -> Log out a user
 - JASON example:
 {
     "id" : "8" 
 }
 
-- DELETE: Delete a user by an admin:
-http://localhost:8080/api/v1/user/delete_user
+- DELETE: http://localhost:8080/api/v1/user/delete_user -> Delete a user by an admin:
 -JASON example:
 {
     "id" : "5" ,
     "idAdminUser" : "1" 
 }
 
-- GET: Get data about a specific user:
-http://localhost:8080/api/v1/user/user_data/4
+- GET: http://localhost:8080/api/v1/user/user_data/4 -> Get data about a specific user:
 
-- PUT: Additional user data:
-http://localhost:8080/api/v1/user/user_data
+- PUT: http://localhost:8080/api/v1/user/user_data -> Additional user data:
 -JASON example:
 {
     "userId" : 8,
@@ -125,16 +119,14 @@ http://localhost:8080/api/v1/user/user_data
     "info" : "Student at UTCN, CTI"
 }
 
-- POST: Create a new topic on the blog
-http://localhost:8080/api/v1/topic/create-topic
+- POST: http://localhost:8080/api/v1/topic/create-topic -> Create a new topic on the blog
 -JASON example:
 {
     "topicTitle" : "Topic test title",
     "idUserPostAdmin" : 8
 }
 
-- POST: Post a new message on a specific topid:
-http://localhost:8080/api/v1/topic/post-message-topic
+- POST: http://localhost:8080/api/v1/topic/post-message-topic -> Post a new message on a specific topid:
 -JASON example:
 {
     "msgText" : "Second Msg",
@@ -142,14 +134,31 @@ http://localhost:8080/api/v1/topic/post-message-topic
     "idUser" : 8
 }
 
-- PUT: Like a message from a topic:
-http://localhost:8080/api/v1/topic/like-topic-message
+- PUT: http://localhost:8080/api/v1/topic/like-topic-message -> Like a message from a topic:
 -JASON example:
 {
     "idMessage" : 2, 
     "idTopic" : 1,
     "idUser" : 8
 }
+
+- POST: http://localhost:8080/api/v1/news/new-update -> For deisgn pattern Observer: send to all the users the new updates
+-JASON example:
+{
+    "title" : "TechBlog Privacy Update",
+    "appNews" : "Observer DP works!"
+}
+
+- GET: http://localhost:8080/api/v1/topic/topics -> get all the topics with the name of the person who created it
+
+- GET: http://localhost:8080/api/v1/topic/topic-messages/1 -> get all the messages from a specific topic
+
+- GET: http://localhost:8080/api/v1/user/7 -> Get all the information about a user
+
+- GET: http://localhost:8080/api/v1/user/users -> get the minimum information about all the users
+
+ 
+
 
 ## JUnit Testing:
 I created three diffrent test classes for the interfaces UseeService, AppNewsObserver and TopicService in order to be able to test the functionalities of the classes which implmented those interfaces.
