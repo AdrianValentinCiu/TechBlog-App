@@ -51,17 +51,17 @@ function TopicMessages() {
               </li>
             ))}
           </ul>
-        </div>
-          <div className="dataContainer">
-            <h1>Add a coment</h1>
-            <div className="dataInput">
-              <label> Post:</label>
-              <textarea placeholder="Text..." onChange={(event) => {setPostText(event.target.value)}} />
-            </div>
-            <button onClick={createPost} className='fancybtn' >
-              Submit post
-            </button>
           </div>
+        <div className="dataContainer">
+          <h1>Add a coment</h1>
+          <div className="dataInput">
+            <label> Post:</label>
+            <textarea placeholder="Text..." onChange={(event) => {setPostText(event.target.value)}} />
+          </div>
+          <button onClick={createPost} className='fancybtn' >
+            Submit post
+          </button>
+        </div>
       </div>
     );
   }

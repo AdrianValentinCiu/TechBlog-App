@@ -28,16 +28,16 @@ a {
 
 .createPostPage {
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 100%;
   display: grid;
   place-items: center;
 }
+
 
 .dataContainer {
   width: 500px;
   height: auto;
   padding: 20px;
-  background-color: black;
   border-radius: 12px;
   color: white;
   display: flex;
@@ -52,7 +52,7 @@ a {
   font-size: 25px;
 }
 .dataContainer .dataInput {
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -135,7 +135,7 @@ textarea {
 
 .topic-messages-container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: auto;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -144,9 +144,9 @@ textarea {
 }
 
 .topic-messages-container .post {
-  width: 600px;
+  width: 500px;
   height: auto;
-  max-height: 600px;
+  max-height: auto;
   background-color: rgb(250, 250, 250);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: 20px;
