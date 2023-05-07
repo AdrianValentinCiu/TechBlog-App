@@ -5,7 +5,7 @@ import TopicMessages from "./TopicMessages"
 
 function Home() {
   const [topics, setTopics] = useState([]);
-  
+
   const getTopics = () => {
     axios
     .get("http://localhost:8080/api/v1/topic/topics")
