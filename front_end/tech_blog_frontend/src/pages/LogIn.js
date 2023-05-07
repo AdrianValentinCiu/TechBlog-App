@@ -3,21 +3,28 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
-function LogIn() {
+function LogIn({setIsAuth, setUserId}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState("");
-
+  const [showError, setShowError] = useState(false);
   let navigate = useNavigate();
 
   const logInUser = () => {
-    //console.log(email);
-    //console.log(password);
+    if (!email || !password) {
+      setShowError(true);
+      return;
+    }
     axios
         .put(`http://localhost:8080/api/v1/auth/login`, { email, password })
         .then((response) => {
             setUserData(response.data);
             console.log(response.data.idUser);
+            localStorage.setItem("isAuth", true);
+            setIsAuth(true);
+            localStorage.setItem("isAuth", true);
+            setUserId(response.data.idUser);
+            localStorage.setItem("idUser", response.data.idUser);
             navigate("/");
         })
         .catch((err) => {
@@ -40,6 +47,12 @@ function LogIn() {
         <button onClick={logInUser} className='fancybtn' >
           Sing in
         </button>
+        {showError && (
+          <div className="errorPopup">
+            Please fill all input fields.
+            <button onClick={() => setShowError(false)}>X</button>
+          </div>
+        )}
     </div>
     </div>
     

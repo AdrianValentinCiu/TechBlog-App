@@ -8,12 +8,24 @@ function Register() {
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [userData, setUserData] = useState("");
+  const [showError, setShowError] = useState(false);
+  const [showPasswordError, setShowpasswordError] = useState(false);
 
   let navigate = useNavigate();
 
   const logInUser = () => {
     //console.log(email);
     //console.log(password);
+    if (!email || !password || !checkPassword) {
+      setShowError(true);
+      return;
+    }
+
+    if (!email || !password || !checkPassword || password !== checkPassword) {
+      setShowpasswordError(true);
+      return;
+    }
+
     axios
         .post(`http://localhost:8080/api/v1/auth/register`, { email, password })
         .then((response) => {
@@ -45,6 +57,18 @@ function Register() {
         <button onClick={logInUser} className='fancybtn' >
           Register
         </button>
+        {showPasswordError && (
+          <div className="errorPopupPassword">
+            Passwords do not match. Please try again.
+            <button onClick={() => setShowpasswordError(false)}>X</button>
+          </div>
+        )}
+        {showError && (
+          <div className="errorPopup">
+            Please fill all input fields.
+            <button onClick={() => setShowError(false)}>X</button>
+          </div>
+        )}
     </div>
     </div>
     

@@ -8,15 +8,18 @@ import Register from "./pages/Register"
 import React, { useState } from 'react'
 import axios from 'axios';
 
+
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-
+  const [userId, setUserId] = useState("");
   const signOutUser = () => {
+    console.log(userId)
     axios
-    .put(`http://localhost:8080/api/v1/auth/logout`, {  })
+    .put(`http://localhost:8080/api/v1/auth/logout`, {id : userId})
     .then((response) => {
-        setIsAuth(response.data);
+        setIsAuth(false);
         console.log(response.data.idUser);
+        localStorage.clear();
     })
     .catch((err) => {
         console.log(err);
@@ -28,13 +31,13 @@ function App() {
       <nav>
         <Link to="/"> Home </Link>
         <Link to="/createpost"> Create Post </Link>
-        <Link to="/login"> LogIn </Link>
-        <Link to="/register"> Register </Link> 
+        {!isAuth ? <Link to="/login"> LogIn </Link> : <button onClick={signOutUser} className='fancybtn'> Log Out</button>}
+        {!isAuth && <Link to="/register"> Register </Link> }
       </nav>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/createpost" element={<CreatePost />}/>
-        <Route path="/login" element={<LogIn />}/>
+        <Route path="/login" element={<LogIn setIsAuth={setIsAuth} setUserId={setUserId}/>}/>
         <Route path="/topic_messages" element={<TopicMessages />}/>
         <Route path="/register" element={<Register />}/>
       </Routes>
