@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 
-function TopicMessages() {
+function TopicMessages(props) {
     const [topicMessages, setTopicMessages] = useState([]);
     const location = useLocation();
     const [postText, setPostText] = useState("")
-
+    const isAuth = props.isAuth;
+    console.log(isAuth);
     const topic = location.state;
-    console.log(topic);
 
     let navigate = useNavigate()
 
@@ -52,16 +52,18 @@ function TopicMessages() {
             ))}
           </ul>
           </div>
-        <div className="dataContainer">
-          <h1>Add a coment</h1>
-          <div className="dataInput">
-            <label> Post:</label>
-            <textarea placeholder="Text..." onChange={(event) => {setPostText(event.target.value)}} />
+        {isAuth &&
+          <div className="dataContainer">
+            <h1>Add a coment</h1>
+            <div className="dataInput">
+              <label> Post:</label>
+              <textarea placeholder="Text..." onChange={(event) => {setPostText(event.target.value)}} />
+            </div>
+            <button onClick={createPost} className='fancybtn' >
+              Submit post
+            </button>
           </div>
-          <button onClick={createPost} className='fancybtn' >
-            Submit post
-          </button>
-        </div>
+        }
       </div>
     );
   }

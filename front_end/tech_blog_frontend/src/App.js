@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<Topics />}/>
         <Route path="/createpost" element={<CreatePost />}/>
         <Route path="/login" element={<LogIn setIsAuth={setIsAuth} setUserId={setUserId}/>}/>
-        <Route path="/topic_messages" element={<TopicMessages />}/>
+        <Route path="/topic_messages" element={<TopicMessages isAuth={isAuth}/>}/>
         <Route path="/register" element={<Register />}/>
       </Routes>
     </Router>

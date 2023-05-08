@@ -58,13 +58,13 @@ function Register() {
           Register
         </button>
         {showPasswordError && (
-          <div className="errorPopupPassword">
+          <div className="errorPopupLeft">
             Passwords do not match. Please try again.
             <button onClick={() => setShowpasswordError(false)}>X</button>
           </div>
         )}
         {showError && (
-          <div className="errorPopup">
+          <div className="errorPopupRight">
             Please fill all input fields.
             <button onClick={() => setShowError(false)}>X</button>
           </div>

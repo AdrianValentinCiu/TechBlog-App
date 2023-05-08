@@ -8,6 +8,7 @@ function LogIn({setIsAuth, setUserId}) {
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState("");
   const [showError, setShowError] = useState(false);
+  const [showUserNotFoundError, setUserNotFoundError] = useState(false);
   let navigate = useNavigate();
 
   const logInUser = () => {
@@ -29,6 +30,7 @@ function LogIn({setIsAuth, setUserId}) {
         })
         .catch((err) => {
             console.log(err);
+            setUserNotFoundError(true);
         });
 };
 
@@ -48,9 +50,15 @@ function LogIn({setIsAuth, setUserId}) {
           Sing in
         </button>
         {showError && (
-          <div className="errorPopup">
+          <div className="errorPopupRight">
             Please fill all input fields.
             <button onClick={() => setShowError(false)}>X</button>
+          </div>
+        )}
+        {showUserNotFoundError && (
+          <div className="errorPopupLeft">
+            User not found
+            <button onClick={() => setUserNotFoundError(false)}>X</button>
           </div>
         )}
     </div>
