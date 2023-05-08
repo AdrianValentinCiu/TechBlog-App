@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom" 
-import Home from "./pages/Home"
+import Topics from "./pages/Topics"
 import CreatePost from "./pages/CreatePost"
 import LogIn from "./pages/LogIn"
 import TopicMessages from "./pages/TopicMessages"
@@ -29,13 +29,13 @@ function App() {
   return (
     <Router>
       <nav>
-        <Link to="/"> Home </Link>
+        <Link to="/"> Topics </Link>
         <Link to="/createpost"> Create Post </Link>
         {!isAuth ? <Link to="/login"> LogIn </Link> : <button onClick={signOutUser} className='fancybtn'> Log Out</button>}
         {!isAuth && <Link to="/register"> Register </Link> }
       </nav>
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Topics />}/>
         <Route path="/createpost" element={<CreatePost />}/>
         <Route path="/login" element={<LogIn setIsAuth={setIsAuth} setUserId={setUserId}/>}/>
         <Route path="/topic_messages" element={<TopicMessages />}/>
