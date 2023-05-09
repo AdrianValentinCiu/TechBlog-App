@@ -36,7 +36,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Topics />}/>
-        <Route path="/createpost" element={<CreatePost />}/>
+        <Route path="/createpost" element={<CreatePost userId={userId}/>}/>
         <Route path="/login" element={<LogIn setIsAuth={setIsAuth} setUserId={setUserId}/>}/>
         <Route path="/topic_messages" element={<TopicMessages isAuth={isAuth} userId={userId}/>}/>
         <Route path="/register" element={<Register />}/>

@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -36,10 +37,15 @@ public class BlogApplicationTestsTopicService {
     private TopicRepositoryDisplay topicRepositoryDisplay;
 
     @Test
-    void testCreateTopic(){
+    void testCreateTopic() {
         TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository, topicMessageDisplay, topicRepositoryDisplay);
-        Topic topic = new Topic("topicTitle", 1);
-        assertTrue(topicService.createTopic("topicTitle", 1) == true);
+
+        Topic topic = mock(Topic.class);
+        when(topic.getIdTopic()).thenReturn(10);
+        when(topicRepository.save(topic)).thenReturn(topic);
+        Integer topicId = topicService.createTopic("topicTitle", 1);
+
+        assertEquals(10, topicId);
         verify(topicRepository).save(topic);
     }
 

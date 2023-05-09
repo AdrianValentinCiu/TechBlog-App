@@ -52,7 +52,7 @@ public class TopicController {
      * @return a boolean representing the state of the topic
      */
     @PostMapping("/create-topic")
-    public ResponseEntity<Boolean> createTopic(@RequestBody TopicRequest request){
+    public ResponseEntity<Integer> createTopic(@RequestBody TopicRequest request){
         return ResponseEntity.ok(topicService.createTopic(request.getTopicTitle(), request.getIdUserPostAdmin()));
 
     }

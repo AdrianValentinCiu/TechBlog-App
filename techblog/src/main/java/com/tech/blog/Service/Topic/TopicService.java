@@ -13,7 +13,7 @@ public interface TopicService {
 
     List<TopicMessageDisplay> getTopicMessages(Integer topicId);
 
-    boolean createTopic(String topicTitle, Integer userAdminId);
+    Integer createTopic(String topicTitle, Integer userAdminId);
 
     boolean postMsgOnTopic(Integer topicId, String msg, Integer userId);
 

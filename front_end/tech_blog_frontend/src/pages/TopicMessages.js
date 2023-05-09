@@ -19,18 +19,23 @@ function TopicMessages(props) {
       console.log(userId);
       axios
         .post(`http://localhost:8080/api/v1/topic/post-message-topic`, {msgText : postText, idTopic : topic.idTopic, idUser : userId})
-        .then( () => getTopicMessages(topic.idTopic) )
+        .then( () => {
+          getTopicMessages(topic.idTopic) 
+          document.querySelector('textarea').value = '';
+
+        })
         .catch((err) => {
            console.log(err);
         });
     }
 
     function getTopicMessages(topicId){
+        console.log(topicId);
         axios
         .get(`http://localhost:8080/api/v1/topic/topic-messages/${topicId}`)
         .then((response) => {
           setTopicMessages(response.data);
-          //console.log(response.data);
+          console.log(response.data);
         })
         .catch((err) => {
            console.log(err);

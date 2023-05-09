@@ -154,10 +154,12 @@ textarea {
   border-radius: 15px;
 }
 
+
 .post .postHeader {
   display: flex;
   justify-content: center;
   width: 100%;
+  
 }
 
 .postHeader .title {

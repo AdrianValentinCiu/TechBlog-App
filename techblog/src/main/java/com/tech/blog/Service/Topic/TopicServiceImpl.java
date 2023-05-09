@@ -42,9 +42,8 @@ public class TopicServiceImpl implements TopicService {
      * @return true if the post was created successfully
      */
     @Override
-    public boolean createTopic(String topicTitle, Integer userAdminId) {
-        topicRepository.save(new Topic(topicTitle, userAdminId));
-        return true;
+    public Integer createTopic(String topicTitle, Integer userAdminId) {
+        return topicRepository.save(new Topic(topicTitle, userAdminId)).getIdTopic();
     }
 
     /**

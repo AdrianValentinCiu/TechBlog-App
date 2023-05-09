@@ -28,21 +28,15 @@ function Home() {
         {topics.map(topic => (
           <li key={topic.idTopic}>
             <div className="post">
-                  <div className="postHeader">
-                      <Link to="/topic_messages" state={topic}
-                         style={{
-                          color: 'black',
-                          '@media (prefers-color-scheme: dark)': {
-                            color: 'white',
-                          },
-                        }}>
-                        {topic.topicTitle}
-                      </Link>
-                  </div>
-                  <div className='postTextContainer'>
-                  @{topic.fullName}
-                  </div>
-            </div>
+              <div className="postHeader">
+                <Link to="/topic_messages" state={topic} >
+                  {topic.topicTitle}
+                </Link>
+              </div>
+              <div className='postTextContainer'>
+              @{topic.fullName}
+              </div>
+          </div>
           </li>
         ))}
       </ul>

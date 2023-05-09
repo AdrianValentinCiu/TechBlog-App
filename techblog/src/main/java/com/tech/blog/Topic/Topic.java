@@ -12,7 +12,7 @@ public class Topic {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idTopic;
+    private Integer idTopic;
     private String topicTitle;
     private Integer idUserPostAdmin;
 
@@ -23,24 +23,30 @@ public class Topic {
         this.idUserPostAdmin = idUserPostAdmin;
     }
 
-    public String getIdTopic() {
+    public Topic(Integer idTopic, String topicTitle, Integer idUserPostAdmin) {
+        this.idTopic = idTopic;
+        this.topicTitle = topicTitle;
+        this.idUserPostAdmin = idUserPostAdmin;
+    }
+
+    public Integer getIdTopic() {
         return idTopic;
+    }
+
+    public void setIdTopic(Integer idTopic) {
+        this.idTopic = idTopic;
     }
 
     public String getTopicTitle() {
         return topicTitle;
     }
 
-    public Integer getIdUserPostAdmin() {
-        return idUserPostAdmin;
-    }
-
-    public void setIdTopic(String idTopic) {
-        this.idTopic = idTopic;
-    }
-
     public void setTopicTitle(String topicTitle) {
         this.topicTitle = topicTitle;
+    }
+
+    public Integer getIdUserPostAdmin() {
+        return idUserPostAdmin;
     }
 
     public void setIdUserPostAdmin(Integer idUserPostAdmin) {
