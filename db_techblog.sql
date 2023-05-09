@@ -47,7 +47,7 @@ CREATE TABLE tblMessage
 	id_user INTEGER NOT NULL,
 	CONSTRAINT fk_msg_topic
 	FOREIGN KEY (id_topic)
-	REFERENCES tblUser (id_user)
+	REFERENCES tblTopic (id_topic)
     ON DELETE CASCADE,
 	CONSTRAINT fk_msg_user
 	FOREIGN KEY (id_user)

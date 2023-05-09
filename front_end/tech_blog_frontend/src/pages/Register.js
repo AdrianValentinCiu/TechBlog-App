@@ -3,41 +3,45 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
-function LogIn({setIsAuth, setUserId}) {
+function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [userData, setUserData] = useState("");
   const [showError, setShowError] = useState(false);
-  const [showUserNotFoundError, setUserNotFoundError] = useState(false);
+  const [showPasswordError, setShowpasswordError] = useState(false);
+
   let navigate = useNavigate();
 
   const logInUser = () => {
-    if (!email || !password) {
+    //console.log(email);
+    //console.log(password);
+    if (!email || !password || !checkPassword) {
       setShowError(true);
       return;
     }
+
+    if (!email || !password || !checkPassword || password !== checkPassword) {
+      setShowpasswordError(true);
+      return;
+    }
+
     axios
-        .put(`http://localhost:8080/api/v1/auth/login`, { email, password })
+        .post(`http://localhost:8080/api/v1/auth/register`, { email, password })
         .then((response) => {
             setUserData(response.data);
             console.log(response.data.idUser);
-            localStorage.setItem("isAuth", true);
-            setIsAuth(true);
-            localStorage.setItem("isAuth", true);
-            setUserId(response.data.idUser);
-            localStorage.setItem("idUser", response.data.idUser);
             navigate("/");
         })
         .catch((err) => {
             console.log(err);
-            setUserNotFoundError(true);
         });
 };
 
   return (
     <div className="loginPage">
       <div className="dataContainer">
-        <h1>Sign in with your account</h1>
+        <h1>Register with a new account</h1>
         <div className="dataInput">
           <label> Email:</label>
           <input placeholder="email" onChange={(event) => {setEmail(event.target.value)}}/>
@@ -46,19 +50,23 @@ function LogIn({setIsAuth, setUserId}) {
           <label> Password:</label>
           <input placeholder="Password" type="password" onChange={(event) => {setPassword(event.target.value)}} />
         </div>
+        <div className="dataInput">
+          <label> Password:</label>
+          <input placeholder="Password" type="password" onChange={(event) => {setCheckPassword(event.target.value)}} />
+        </div>
         <button onClick={logInUser} className='fancybtn' >
-          Sing in
+          Register
         </button>
+        {showPasswordError && (
+          <div className="errorPopupLeft">
+            Passwords do not match. Please try again.
+            <button onClick={() => setShowpasswordError(false)}>X</button>
+          </div>
+        )}
         {showError && (
           <div className="errorPopupRight">
             Please fill all input fields.
             <button onClick={() => setShowError(false)}>X</button>
-          </div>
-        )}
-        {showUserNotFoundError && (
-          <div className="errorPopupLeft">
-            User not found
-            <button onClick={() => setUserNotFoundError(false)}>X</button>
           </div>
         )}
     </div>
@@ -67,4 +75,4 @@ function LogIn({setIsAuth, setUserId}) {
   )
 }
 
-export default LogIn
+export default Register

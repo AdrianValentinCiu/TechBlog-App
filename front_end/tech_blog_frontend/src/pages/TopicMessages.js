@@ -3,27 +3,39 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 
-function TopicMessages() {
+function TopicMessages(props) {
     const [topicMessages, setTopicMessages] = useState([]);
     const location = useLocation();
     const [postText, setPostText] = useState("")
-
+    const isAuth = props.isAuth;
+    const userId = props.userId;
     const topic = location.state;
-    console.log(topic);
 
     let navigate = useNavigate()
 
     const createPost = () => {
       console.log(postText)
-      navigate("/")
+      console.log(topic.idTopic);
+      console.log(userId);
+      axios
+        .post(`http://localhost:8080/api/v1/topic/post-message-topic`, {msgText : postText, idTopic : topic.idTopic, idUser : userId})
+        .then( () => {
+          getTopicMessages(topic.idTopic) 
+          document.querySelector('textarea').value = '';
+
+        })
+        .catch((err) => {
+           console.log(err);
+        });
     }
 
     function getTopicMessages(topicId){
+        console.log(topicId);
         axios
         .get(`http://localhost:8080/api/v1/topic/topic-messages/${topicId}`)
         .then((response) => {
           setTopicMessages(response.data);
-          //console.log(response.data);
+          console.log(response.data);
         })
         .catch((err) => {
            console.log(err);
@@ -51,7 +63,8 @@ function TopicMessages() {
               </li>
             ))}
           </ul>
-        </div>
+          </div>
+        {isAuth &&
           <div className="dataContainer">
             <h1>Add a coment</h1>
             <div className="dataInput">
@@ -62,6 +75,7 @@ function TopicMessages() {
               Submit post
             </button>
           </div>
+        }
       </div>
     );
   }

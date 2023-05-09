@@ -1,15 +1,15 @@
 package com.tech.blog;
 
-import com.tech.blog.dao.TopicMessageRepository;
-import com.tech.blog.dao.TopicMessagesRepositoryDisplay;
-import com.tech.blog.dao.TopicRepository;
-import com.tech.blog.dao.TopicRepositoryDisplay;
-import com.tech.blog.service.topic.TopicService;
-import com.tech.blog.service.topic.TopicServiceImpl;
-import com.tech.blog.topic.Topic;
-import com.tech.blog.topic.TopicDisplay;
-import com.tech.blog.topic.TopicMessage;
-import com.tech.blog.topic.TopicMessageDisplay;
+import com.tech.blog.Dao.TopicMessageRepository;
+import com.tech.blog.Dao.TopicMessagesRepositoryDisplay;
+import com.tech.blog.Dao.TopicRepository;
+import com.tech.blog.Dao.TopicRepositoryDisplay;
+import com.tech.blog.Service.Topic.TopicService;
+import com.tech.blog.Service.Topic.TopicServiceImpl;
+import com.tech.blog.Topic.Topic;
+import com.tech.blog.Topic.TopicDisplay;
+import com.tech.blog.Topic.TopicMessage;
+import com.tech.blog.Topic.TopicMessageDisplay;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -36,10 +37,15 @@ public class BlogApplicationTestsTopicService {
     private TopicRepositoryDisplay topicRepositoryDisplay;
 
     @Test
-    void testCreateTopic(){
+    void testCreateTopic() {
         TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository, topicMessageDisplay, topicRepositoryDisplay);
-        Topic topic = new Topic("topicTitle", 1);
-        assertTrue(topicService.createTopic("topicTitle", 1) == true);
+
+        Topic topic = mock(Topic.class);
+        when(topic.getIdTopic()).thenReturn(10);
+        when(topicRepository.save(topic)).thenReturn(topic);
+        Integer topicId = topicService.createTopic("topicTitle", 1);
+
+        assertEquals(10, topicId);
         verify(topicRepository).save(topic);
     }
 
