@@ -8,14 +8,21 @@ function TopicMessages(props) {
     const location = useLocation();
     const [postText, setPostText] = useState("")
     const isAuth = props.isAuth;
-    console.log(isAuth);
+    const userId = props.userId;
     const topic = location.state;
 
     let navigate = useNavigate()
 
     const createPost = () => {
       console.log(postText)
-      navigate("/")
+      console.log(topic.idTopic);
+      console.log(userId);
+      axios
+        .post(`http://localhost:8080/api/v1/topic/post-message-topic`, {msgText : postText, idTopic : topic.idTopic, idUser : userId})
+        .then( () => getTopicMessages(topic.idTopic) )
+        .catch((err) => {
+           console.log(err);
+        });
     }
 
     function getTopicMessages(topicId){

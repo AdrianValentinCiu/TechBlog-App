@@ -1,14 +1,14 @@
 package com.tech.blog;
 
-import com.tech.blog.dao.AdditionalUserDataRepository;
-import com.tech.blog.dao.UserRepository;
-import com.tech.blog.dao.UserRepositoryDisplay;
-import com.tech.blog.service.user.UserService;
-import com.tech.blog.service.user.UserServiceImpl;
-import com.tech.blog.user.AdditionalUserData;
-import com.tech.blog.user.Role;
-import com.tech.blog.user.User;
-import com.tech.blog.user.UserDisplay;
+import com.tech.blog.Dao.AdditionalUserDataRepository;
+import com.tech.blog.Dao.UserRepository;
+import com.tech.blog.Dao.UserRepositoryDisplay;
+import com.tech.blog.Service.User.UserService;
+import com.tech.blog.Service.User.UserServiceImpl;
+import com.tech.blog.User.AdditionalUserData;
+import com.tech.blog.User.Role;
+import com.tech.blog.User.User;
+import com.tech.blog.User.UserDisplay;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;

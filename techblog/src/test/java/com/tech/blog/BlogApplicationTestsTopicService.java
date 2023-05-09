@@ -1,15 +1,15 @@
 package com.tech.blog;
 
-import com.tech.blog.dao.TopicMessageRepository;
-import com.tech.blog.dao.TopicMessagesRepositoryDisplay;
-import com.tech.blog.dao.TopicRepository;
-import com.tech.blog.dao.TopicRepositoryDisplay;
-import com.tech.blog.service.topic.TopicService;
-import com.tech.blog.service.topic.TopicServiceImpl;
-import com.tech.blog.topic.Topic;
-import com.tech.blog.topic.TopicDisplay;
-import com.tech.blog.topic.TopicMessage;
-import com.tech.blog.topic.TopicMessageDisplay;
+import com.tech.blog.Dao.TopicMessageRepository;
+import com.tech.blog.Dao.TopicMessagesRepositoryDisplay;
+import com.tech.blog.Dao.TopicRepository;
+import com.tech.blog.Dao.TopicRepositoryDisplay;
+import com.tech.blog.Service.Topic.TopicService;
+import com.tech.blog.Service.Topic.TopicServiceImpl;
+import com.tech.blog.Topic.Topic;
+import com.tech.blog.Topic.TopicDisplay;
+import com.tech.blog.Topic.TopicMessage;
+import com.tech.blog.Topic.TopicMessageDisplay;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
