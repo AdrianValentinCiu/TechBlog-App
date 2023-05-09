@@ -85,7 +85,7 @@ textarea {
   margin-top: 5px;
 }
 
-.loginPage {
+.formPage {
   width: 100vw;
   height: calc(100vh - 80px);
   display: flex;
@@ -94,7 +94,7 @@ textarea {
   align-items: center;
 }
 
-.loginPage p {
+.formPage p {
   font-size: 30px;
 }
 

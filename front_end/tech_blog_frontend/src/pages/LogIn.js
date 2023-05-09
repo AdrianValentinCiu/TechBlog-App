@@ -35,7 +35,7 @@ function LogIn({setIsAuth, setUserId}) {
 };
 
   return (
-    <div className="loginPage">
+    <div className="formPage">
       <div className="dataContainer">
         <h1>Sign in with your account</h1>
         <div className="dataInput">

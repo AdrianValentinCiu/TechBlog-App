@@ -39,7 +39,7 @@ function Register() {
 };
 
   return (
-    <div className="loginPage">
+    <div className="formPage">
       <div className="dataContainer">
         <h1>Register with a new account</h1>
         <div className="dataInput">
