@@ -9,12 +9,11 @@ function UserProfile(props) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [showError, setShowError] = useState(false);
-
     const getUserProfile = (userId) => {
+        console.log(userId);
         axios
         .get(`http://localhost:8080/api/v1/user/${userId}`)
         .then((response) => {
-            console.log(response.data);
             setUserData(response.data);
         })
         .catch((err) => {
@@ -23,10 +22,6 @@ function UserProfile(props) {
     }  
     
     const updateUserData = () => {
-        console.log(info);
-        console.log(firstName);
-        console.log(lastName)
-
         axios
         .put(`http://localhost:8080/api/v1/user/user_data`, {
                 userId : props.userId,
@@ -35,7 +30,6 @@ function UserProfile(props) {
                 info : info
             })
         .then((response) => {
-            console.log(response.data);
             setUserData(response.data);
             document.querySelectorAll('input').forEach(input => {
               input.value = '';
