@@ -59,6 +59,9 @@ function TopicMessages(props) {
                       {'  @'}
                       {msg.fullName}
                     </div>
+                    <div className='deletePost'>
+                      <button> &#128465; </button>
+                    </div>
                 </div>
               </li>
             ))}
