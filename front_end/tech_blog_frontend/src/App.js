@@ -39,6 +39,7 @@ function App() {
       <nav>
         <Link to="/"> Topics </Link>
         <Link to="/createpost"> Create Post </Link>
+        {isAuth && <Link to="/userprofile"> User Profile </Link>}
         {isAuth && isAdmin && <Link to="/allusers"> All Users </Link>}
         {isAuth && isAdmin && <Link to="/notifyusers"> Notify </Link>}
         {!isAuth ? <Link to="/login"> LogIn </Link> : <button onClick={signOutUser} className='fancybtn'> Log Out</button>}
