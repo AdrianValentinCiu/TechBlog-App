@@ -44,7 +44,7 @@ function LogIn({setIsAuth, setUserId, setIsAdmin}) {
       <div className="dataContainer">
         <h1>Sign in with your account</h1>
         <div className="dataInput">
-          <label> Email:</label>
+          <label > Email:</label>
           <input placeholder="email" onChange={(event) => {setEmail(event.target.value)}}/>
         </div>
         <div className="dataInput">

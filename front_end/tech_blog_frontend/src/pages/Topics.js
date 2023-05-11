@@ -29,7 +29,12 @@ function Home() {
           <li key={topic.idTopic}>
             <div className="post">
               <div className="postHeader">
-                <Link to="/topic_messages" state={topic} >
+                <Link to="/topic_messages" state={topic} style={{
+                  color: 'black',
+                  '@media (prefers-color-scheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
                   {topic.topicTitle}
                 </Link>
               </div>

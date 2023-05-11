@@ -63,12 +63,11 @@ public class TopicServiceImpl implements TopicService {
      * This method is used to like a message from a topic
      * @param idMessage
      * @param topicId
-     * @param userId
      * @return
      */
     @Override
-    public Integer likeMsgOnTopic(Integer idMessage, Integer topicId, Integer userId) {
-        Optional<TopicMessage> findTopicMessage = topicMessageRepository.findByIdMessageAndIdTopicAndIdUser(idMessage, topicId, userId);
+    public Integer likeMsgOnTopic(Integer idMessage, Integer topicId) {
+        Optional<TopicMessage> findTopicMessage = topicMessageRepository.findByIdMessageAndIdTopic(idMessage, topicId);
         if (findTopicMessage != null) {
             TopicMessage topicMessage = findTopicMessage.get();
             topicMessage.setLikesMessage(topicMessage.getLikesMessage() + 1);

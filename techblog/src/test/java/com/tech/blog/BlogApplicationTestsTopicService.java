@@ -63,12 +63,12 @@ public class BlogApplicationTestsTopicService {
         TopicMessage topicMessage = mock(TopicMessage.class);
         when(topicMessage.getLikesMessage()).thenReturn(1);
         when(topicMessageRepository.save(topicMessage)).thenReturn(topicMessage);
-        when(topicMessageRepository.findByIdMessageAndIdTopicAndIdUser(1, 2, 3)).thenReturn(Optional.of(topicMessage));
-        assertTrue(topicService.likeMsgOnTopic(1, 2, 3) == 1);
+        when(topicMessageRepository.findByIdMessageAndIdTopic(1, 2)).thenReturn(Optional.of(topicMessage));
+        assertTrue(topicService.likeMsgOnTopic(1, 2) == 1);
         verify(topicMessage, times(2)).getLikesMessage();
         verify(topicMessage, times(2)).setLikesMessage(topicMessage.getLikesMessage());
         verify(topicMessageRepository).save(topicMessage);
-        verify(topicMessageRepository).findByIdMessageAndIdTopicAndIdUser(1, 2, 3);
+        verify(topicMessageRepository).findByIdMessageAndIdTopic(1, 2);
     }
 
     @Test

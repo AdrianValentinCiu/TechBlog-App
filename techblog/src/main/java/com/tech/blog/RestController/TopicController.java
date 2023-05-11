@@ -75,7 +75,7 @@ public class TopicController {
      */
     @PutMapping("/like-topic-message")
     public Integer likeMsgOnTopic(@RequestBody TopicLikeMessageRequest request){
-        return topicService.likeMsgOnTopic(request.getIdMessage(), request.getIdTopic(), request.getIdUser());
+        return topicService.likeMsgOnTopic(request.getIdMessage(), request.getIdTopic());
     }
 
 }

@@ -17,5 +17,5 @@ public interface TopicService {
 
     boolean postMsgOnTopic(Integer topicId, String msg, Integer userId);
 
-    Integer likeMsgOnTopic(Integer idMessage, Integer topicId, Integer userId);
+    Integer likeMsgOnTopic(Integer idMessage, Integer topicId);
 }
