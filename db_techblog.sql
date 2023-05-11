@@ -41,18 +41,18 @@ CREATE TABLE tblTopic
 CREATE TABLE tblMessage
 (
 	id_message INTEGER IDENTITY(1,1) PRIMARY KEY,
-	msg_text VARCHAR(2000) NOT NULL,
+	msg_text VARCHAR(MAX) NOT NULL,
 	likes_message INTEGER NOT NULL DEFAULT(0),
 	id_topic INTEGER NOT NULL,
 	id_user INTEGER NOT NULL,
-	CONSTRAINT fk_msg_topic
-	FOREIGN KEY (id_topic)
-	REFERENCES tblTopic (id_topic)
-    ON DELETE CASCADE,
-	--CONSTRAINT fk_msg_user
-	--FOREIGN KEY (id_user)
-	--REFERENCES tblUser (id_user)
-	--ON DELETE CASCADE
+	-- CONSTRAINT fk_msg_topic
+	-- FOREIGN KEY (id_topic)
+	-- REFERENCES tblTopic (id_topic)
+    -- ON DELETE CASCADE,
+	CONSTRAINT fk_msg_user
+	FOREIGN KEY (id_user)
+	REFERENCES tblUser (id_user)
+	ON DELETE CASCADE
 )
 
 -- sp_rename 'tblUser.UserID', 'IDUser', 'COLUMN';

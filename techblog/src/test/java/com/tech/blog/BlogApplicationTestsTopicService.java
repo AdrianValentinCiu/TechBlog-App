@@ -62,9 +62,11 @@ public class BlogApplicationTestsTopicService {
         TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository, topicMessageDisplay, topicRepositoryDisplay);
         TopicMessage topicMessage = mock(TopicMessage.class);
         when(topicMessage.getLikesMessage()).thenReturn(1);
+        when(topicMessageRepository.save(topicMessage)).thenReturn(topicMessage);
         when(topicMessageRepository.findByIdMessageAndIdTopicAndIdUser(1, 2, 3)).thenReturn(Optional.of(topicMessage));
-        assertTrue(topicService.likeMsgOnTopic(1, 2, 3) == true);
-        verify(topicMessage).setLikesMessage(topicMessage.getLikesMessage());
+        assertTrue(topicService.likeMsgOnTopic(1, 2, 3) == 1);
+        verify(topicMessage, times(2)).getLikesMessage();
+        verify(topicMessage, times(2)).setLikesMessage(topicMessage.getLikesMessage());
         verify(topicMessageRepository).save(topicMessage);
         verify(topicMessageRepository).findByIdMessageAndIdTopicAndIdUser(1, 2, 3);
     }

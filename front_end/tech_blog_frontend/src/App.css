@@ -164,11 +164,26 @@ textarea {
 .postHeader .title {
   flex: 50%;
 }
+
+.post .likePost {
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .post .deletePost {
   flex: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.likePost button {
+  border: none;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 .deletePost button {

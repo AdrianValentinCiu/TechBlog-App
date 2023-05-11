@@ -42,10 +42,25 @@ function TopicMessages(props) {
         });
       }
 
+      function getLikeMessages(idMessage){
+        console.log(topic.idTopic);
+        console.log(idMessage);
+        console.log(userId)
+        axios
+        .put(`http://localhost:8080/api/v1/topic/like-topic-message`, {idMessage : idMessage, idTopic : topic.idTopic, idUser : userId})
+        .then((response) => {
+          //console.log(response.data);
+          getTopicMessages(topic.idTopic) 
+        })
+        .catch((err) => {
+           console.log(err);
+        });
+      }
+
     useEffect(() => {
       getTopicMessages(topic.idTopic) 
-      //console.log(topicMessages)
     }, [])
+
     return (
       <div className='createPostPage'>
         <div className="topic-messages-container">
@@ -58,8 +73,9 @@ function TopicMessages(props) {
                       {'  @'}
                       {msg.fullName}
                     </div>
-                    <div className='deletePost'>
-                      <button>&#128077;</button>
+                    <div className='likePost'>
+                      <button onClick={() =>getLikeMessages(msg.idMessage)}>&#128077;</button>
+                      {msg.likesMessage}
                     </div>
                 </div>
               </li>

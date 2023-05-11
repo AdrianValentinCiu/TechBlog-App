@@ -67,16 +67,15 @@ public class TopicServiceImpl implements TopicService {
      * @return
      */
     @Override
-    public boolean likeMsgOnTopic(Integer idMessage, Integer topicId, Integer userId) {
+    public Integer likeMsgOnTopic(Integer idMessage, Integer topicId, Integer userId) {
         Optional<TopicMessage> findTopicMessage = topicMessageRepository.findByIdMessageAndIdTopicAndIdUser(idMessage, topicId, userId);
         if (findTopicMessage != null) {
-            System.out.println("found");
             TopicMessage topicMessage = findTopicMessage.get();
             topicMessage.setLikesMessage(topicMessage.getLikesMessage() + 1);
-            topicMessageRepository.save(topicMessage);
-            return true;
+            TopicMessage topicMessage_saved = topicMessageRepository.save(topicMessage);
+            return topicMessage_saved.getLikesMessage();
         }
-        return false;
+        return null;
     }
 
 

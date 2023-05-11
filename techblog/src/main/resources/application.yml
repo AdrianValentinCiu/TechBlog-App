@@ -21,3 +21,10 @@ spring:
     #database: mssql
     database-platform: org.hibernate.dialect.SQLServerDialect
 
+mail:
+  host: localhost
+  port: 1025
+  username: hello
+  password: hello
+
+

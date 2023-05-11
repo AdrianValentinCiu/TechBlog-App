@@ -6,6 +6,7 @@ import com.tech.blog.RestRequest.TopicRequest;
 import com.tech.blog.Service.Topic.TopicService;
 import com.tech.blog.Topic.TopicDisplay;
 import com.tech.blog.Topic.TopicMessageDisplay;
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,8 +74,8 @@ public class TopicController {
      * @return a boolean representing the state of the liked message by a user
      */
     @PutMapping("/like-topic-message")
-    public ResponseEntity<Boolean> likeMsgOnTopic(@RequestBody TopicLikeMessageRequest request){
-        return ResponseEntity.ok(topicService.likeMsgOnTopic(request.getIdMessage(), request.getIdTopic(), request.getIdUser()));
+    public Integer likeMsgOnTopic(@RequestBody TopicLikeMessageRequest request){
+        return topicService.likeMsgOnTopic(request.getIdMessage(), request.getIdTopic(), request.getIdUser());
     }
 
 }
