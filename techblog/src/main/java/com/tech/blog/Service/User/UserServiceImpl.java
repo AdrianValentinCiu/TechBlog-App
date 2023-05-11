@@ -6,6 +6,7 @@ import com.tech.blog.Dao.UserRepositoryDisplay;
 import com.tech.blog.User.*;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,7 +108,12 @@ public class UserServiceImpl implements UserService, AppNewsObservable {
      */
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users_role_user = new LinkedList<>();
+        for (User user : userRepository.findAll())
+            if(user.getUserRole() == Role.USER){
+                users_role_user.add(user);
+            }
+        return users_role_user;
     }
 
     /**

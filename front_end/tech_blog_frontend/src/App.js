@@ -7,6 +7,7 @@ import TopicMessages from "./pages/TopicMessages"
 import UserProfile from "./pages/UserProfile"
 import Register from "./pages/Register"
 import AllUsers from "./pages/AllUsers"
+import NotifyUsers from "./pages/NotifyUsers"
 import React, { useState } from 'react'
 import axios from 'axios';
 
@@ -38,8 +39,8 @@ function App() {
       <nav>
         <Link to="/"> Topics </Link>
         <Link to="/createpost"> Create Post </Link>
-        {isAuth && <Link to="/userprofile"> User Profile </Link>}
         {isAuth && isAdmin && <Link to="/allusers"> All Users </Link>}
+        {isAuth && isAdmin && <Link to="/notifyusers"> Notify </Link>}
         {!isAuth ? <Link to="/login"> LogIn </Link> : <button onClick={signOutUser} className='fancybtn'> Log Out</button>}
         {!isAuth && <Link to="/register"> Register </Link> }
       </nav>
@@ -48,6 +49,7 @@ function App() {
         <Route path="/createpost" element={<CreatePost userId={userId}/>}/>
         <Route path="/userprofile"  element={<UserProfile userId={userId}/>}/>
         <Route path="/allusers"  element={<AllUsers userId={userId}/>}/>
+        <Route path="/notifyusers"  element={<NotifyUsers/>}/>
         <Route path="/login" element={<LogIn setIsAuth={setIsAuth} setUserId={setUserId} setIsAdmin={setIsAdmin}/>}/>
         <Route path="/topic_messages" element={<TopicMessages isAuth={isAuth} userId={userId}/>}/>
         <Route path="/register" element={<Register />}/>

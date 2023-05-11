@@ -79,6 +79,14 @@ public class User implements AppNewsObserver {
         this.userRole = userRole;
     }
 
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public Role getUserRole() {
+        return userRole;
+    }
+
     public String toString(){
         return idUser + " " + isOnline + " " + email + " " + password + " " + userRole + "\n";
     }
