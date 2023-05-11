@@ -94,6 +94,7 @@ For this application I used the Singleton design pattern in order to have only o
     "email" : "adrian_ciu@yahoo.com",
     "password" : "1234" 
 }
+Returns the data of the logged user if the loggin in is successful.
 
 - PUT: http://localhost:8080/api/v1/auth/logout -> Log out a user
 - JASON example:
