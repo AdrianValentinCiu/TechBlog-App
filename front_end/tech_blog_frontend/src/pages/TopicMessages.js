@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
 
 function TopicMessages(props) {
     const [topicMessages, setTopicMessages] = useState([]);
@@ -10,8 +9,6 @@ function TopicMessages(props) {
     const isAuth = props.isAuth;
     const userId = props.userId;
     const topic = location.state;
-
-    let navigate = useNavigate()
 
     const createPost = () => {
       console.log(postText)
@@ -42,9 +39,23 @@ function TopicMessages(props) {
         });
       }
 
+      function getLikeMessages(idMessage){
+        console.log(topic.idTopic);
+        console.log(idMessage);
+        console.log(userId)
+        axios
+        .put(`http://localhost:8080/api/v1/topic/like-topic-message`, {idMessage : idMessage, idTopic : topic.idTopic, idUser : userId})
+        .then((response) => {
+          //console.log(response.data);
+          getTopicMessages(topic.idTopic) 
+        })
+        .catch((err) => {
+           console.log(err);
+        });
+      }
+
     useEffect(() => {
       getTopicMessages(topic.idTopic) 
-      //console.log(topicMessages)
     }, [])
 
     return (
@@ -59,13 +70,22 @@ function TopicMessages(props) {
                       {'  @'}
                       {msg.fullName}
                     </div>
+                    <div className='likePost'>
+                      <button onClick={() =>getLikeMessages(msg.idMessage)}>&#128077;</button>
+                      {msg.likesMessage}
+                    </div>
                 </div>
               </li>
             ))}
           </ul>
           </div>
         {isAuth &&
-          <div className="dataContainer">
+          <div className="dataContainer" style={{
+                color: 'black',
+                '@media (prefersColorScheme: dark)': {
+                  color: 'white',
+                },
+              }}>
             <h1>Add a coment</h1>
             <div className="dataInput">
               <label> Post:</label>

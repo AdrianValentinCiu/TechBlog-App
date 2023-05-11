@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
-function LogIn({setIsAuth, setUserId}) {
+function LogIn({setIsAuth, setUserId, setIsAdmin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState("");
@@ -23,23 +23,37 @@ function LogIn({setIsAuth, setUserId}) {
             console.log(response.data.idUser);
             localStorage.setItem("isAuth", true);
             setIsAuth(true);
-            localStorage.setItem("isAuth", true);
             setUserId(response.data.idUser);
-            localStorage.setItem("idUser", response.data.idUser);
+            console.log(response.data.role)
+            if(response.data.role === 'ADMIN'){
+              setIsAdmin(true);
+              localStorage.setItem("isAdmin", true);
+            }
+            else{
+              setIsAdmin(false);
+              localStorage.setItem("isAdmin", false);
+            }
+            
+            localStorage.setItem("userId", response.data.idUser);
             navigate("/");
         })
         .catch((err) => {
             console.log(err);
             setUserNotFoundError(true);
         });
-};
+  };
 
   return (
-    <div className="loginPage">
-      <div className="dataContainer">
+    <div className="formPage">
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefersColorScheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <h1>Sign in with your account</h1>
         <div className="dataInput">
-          <label> Email:</label>
+          <label > Email:</label>
           <input placeholder="email" onChange={(event) => {setEmail(event.target.value)}}/>
         </div>
         <div className="dataInput">

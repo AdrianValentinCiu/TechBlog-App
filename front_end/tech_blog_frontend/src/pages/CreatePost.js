@@ -32,7 +32,12 @@ function CreatePost(props) {
 
   return (
     <div className="createPostPage">
-      <div className="dataContainer">
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefersColorScheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <h1>Create a post</h1>
         <div className="dataInput">
           <label> Title:</label>
