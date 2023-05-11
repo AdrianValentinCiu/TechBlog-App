@@ -42,7 +42,7 @@ function Register() {
     <div className="formPage" >
       <div className="dataContainer" style={{
                   color: 'black',
-                  '@media (prefers-color-scheme: dark)': {
+                  '@media (prefersColorScheme: dark)': {
                     color: 'white',
                   },
                 }}>

@@ -25,7 +25,7 @@ function NotifyUsers() {
     <div className="createPostPage">
       <div className="dataContainer" style={{
                   color: 'black',
-                  '@media (prefers-color-scheme: dark)': {
+                  '@media (prefersColorScheme: dark)': {
                     color: 'white',
                   },
                 }}>

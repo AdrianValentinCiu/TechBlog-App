@@ -23,27 +23,31 @@ function LogIn({setIsAuth, setUserId, setIsAdmin}) {
             console.log(response.data.idUser);
             localStorage.setItem("isAuth", true);
             setIsAuth(true);
-            localStorage.setItem("isAuth", true);
             setUserId(response.data.idUser);
             console.log(response.data.role)
-            if(response.data.role === 'ADMIN')
+            if(response.data.role === 'ADMIN'){
               setIsAdmin(true);
-            else
+              localStorage.setItem("isAdmin", true);
+            }
+            else{
               setIsAdmin(false);
-            localStorage.setItem("idUser", response.data.idUser);
+              localStorage.setItem("isAdmin", false);
+            }
+            
+            localStorage.setItem("userId", response.data.idUser);
             navigate("/");
         })
         .catch((err) => {
             console.log(err);
             setUserNotFoundError(true);
         });
-};
+  };
 
   return (
     <div className="formPage">
       <div className="dataContainer" style={{
                   color: 'black',
-                  '@media (prefers-color-scheme: dark)': {
+                  '@media (prefersColorScheme: dark)': {
                     color: 'white',
                   },
                 }}>

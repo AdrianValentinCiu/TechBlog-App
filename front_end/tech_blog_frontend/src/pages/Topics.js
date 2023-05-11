@@ -31,7 +31,7 @@ function Home() {
               <div className="postHeader">
                 <Link to="/topic_messages" state={topic} style={{
                   color: 'black',
-                  '@media (prefers-color-scheme: dark)': {
+                  '@media (prefersColorScheme: dark)': {
                     color: 'white',
                   },
                 }}>

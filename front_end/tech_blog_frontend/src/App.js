@@ -8,7 +8,7 @@ import UserProfile from "./pages/UserProfile"
 import Register from "./pages/Register"
 import AllUsers from "./pages/AllUsers"
 import NotifyUsers from "./pages/NotifyUsers"
-import React, { useState } from 'react'
+import React, { useState, useEffect  } from 'react'
 import axios from 'axios';
 
 
@@ -17,15 +17,35 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState("");
 
+  useEffect(() => {
+    const storedIsAuth = localStorage.getItem('isAuth');
+    if (storedIsAuth) {
+      setIsAuth(storedIsAuth);
+    }
+
+    const storedIsAdmin = localStorage.getItem('isAdmin');
+    if (storedIsAdmin) {
+      setIsAdmin(storedIsAdmin);
+    }
+
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
   const signOutUser = () => {
     console.log(userId)
+    localStorage.clear();
     axios
     .put(`http://localhost:8080/api/v1/auth/logout`, {id : userId})
     .then((response) => {
+        console.log(userId);
         setIsAuth(false);
         setIsAdmin(false);
-        console.log("out");
-        localStorage.clear();
+        setUserId("")
+
+
         window.location.replace('http://localhost:3000');
         
     })
@@ -34,6 +54,7 @@ function App() {
     });
 
   }
+
   return (
     <Router>
       <nav>
