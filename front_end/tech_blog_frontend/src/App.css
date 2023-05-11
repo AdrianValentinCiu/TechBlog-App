@@ -51,13 +51,13 @@ a {
 .dataContainer label {
   font-size: 25px;
 }
+
 .dataContainer .dataInput {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.dataInput input,
 .dataInput textarea {
   font-size: 18px;
   border: none;

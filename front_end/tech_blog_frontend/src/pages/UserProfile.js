@@ -47,7 +47,12 @@ function UserProfile(props) {
 
   return (
     <div className="formPage">
-      <div className="dataContainer">
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefers-color-scheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <div className="dataInput">
           <label> Email: {userData.email}</label>
           <label> Full Name: {userData.fullName}</label>

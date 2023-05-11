@@ -41,7 +41,12 @@ function LogIn({setIsAuth, setUserId, setIsAdmin}) {
 
   return (
     <div className="formPage">
-      <div className="dataContainer">
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefers-color-scheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <h1>Sign in with your account</h1>
         <div className="dataInput">
           <label > Email:</label>

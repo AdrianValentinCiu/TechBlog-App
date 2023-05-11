@@ -23,7 +23,12 @@ function NotifyUsers() {
 
   return (
     <div className="createPostPage">
-      <div className="dataContainer">
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefers-color-scheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <h1>Notification Title</h1>
         <div className="dataInput">
           <label> Title:</label>

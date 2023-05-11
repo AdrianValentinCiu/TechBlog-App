@@ -39,8 +39,13 @@ function Register() {
 };
 
   return (
-    <div className="formPage">
-      <div className="dataContainer">
+    <div className="formPage" >
+      <div className="dataContainer" style={{
+                  color: 'black',
+                  '@media (prefers-color-scheme: dark)': {
+                    color: 'white',
+                  },
+                }}>
         <h1>Register with a new account</h1>
         <div className="dataInput">
           <label> Email:</label>
