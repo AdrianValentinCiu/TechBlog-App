@@ -49,10 +49,10 @@ CREATE TABLE tblMessage
 	FOREIGN KEY (id_topic)
 	REFERENCES tblTopic (id_topic)
     ON DELETE CASCADE,
-	CONSTRAINT fk_msg_user
-	FOREIGN KEY (id_user)
-	REFERENCES tblUser (id_user)
-	ON DELETE CASCADE
+	--CONSTRAINT fk_msg_user
+	--FOREIGN KEY (id_user)
+	--REFERENCES tblUser (id_user)
+	--ON DELETE CASCADE
 )
 
 -- sp_rename 'tblUser.UserID', 'IDUser', 'COLUMN';
