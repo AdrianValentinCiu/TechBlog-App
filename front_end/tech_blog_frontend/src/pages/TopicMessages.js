@@ -46,7 +46,7 @@ function TopicMessages(props) {
       getTopicMessages(topic.idTopic) 
       //console.log(topicMessages)
     }, [])
-
+  //<button> &#128465; </button>
     return (
       <div className='createPostPage'>
         <div className="topic-messages-container">
@@ -60,7 +60,7 @@ function TopicMessages(props) {
                       {msg.fullName}
                     </div>
                     <div className='deletePost'>
-                      <button> &#128465; </button>
+                      <button>&#128077;</button>
                     </div>
                 </div>
               </li>

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
-function LogIn({setIsAuth, setUserId}) {
+function LogIn({setIsAuth, setUserId, setIsAdmin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState("");
@@ -25,6 +25,11 @@ function LogIn({setIsAuth, setUserId}) {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
             setUserId(response.data.idUser);
+            console.log(response.data.role)
+            if(response.data.role === 'ADMIN')
+              setIsAdmin(true);
+            else
+              setIsAdmin(false);
             localStorage.setItem("idUser", response.data.idUser);
             navigate("/");
         })
