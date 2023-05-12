@@ -44,8 +44,6 @@ function App() {
         setIsAuth(false);
         setIsAdmin(false);
         setUserId("")
-
-
         window.location.replace('http://localhost:3000');
         
     })

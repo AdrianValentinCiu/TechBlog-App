@@ -9,12 +9,38 @@ function UserProfile(props) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [showError, setShowError] = useState(false);
+    const [userId, setUserId] = useState(0);
+
+    useEffect(() => {
+      setUserId(props.userId);
+    }, [props.userId]);
+    
+    useEffect(() => {
+      const storedUserData = localStorage.getItem('storedUserData');
+      if (storedUserData) {
+        setUserData(storedUserData);
+      }
+      console.log(userData);
+      const storedUserId = localStorage.getItem('userId');
+      if (storedUserId) {
+        setUserId(storedUserId);
+      }
+      console.log(userId);
+    }, []);
+    
+    useEffect(() => {
+      if (userId) {
+        getUserProfile(userId);
+      }
+    }, [userId]);
+
     const getUserProfile = (userId) => {
         console.log(userId);
         axios
         .get(`http://localhost:8080/api/v1/user/${userId}`)
         .then((response) => {
             setUserData(response.data);
+            localStorage.setItem("storedUserData", response.data);
         })
         .catch((err) => {
             console.log(err);
@@ -24,26 +50,24 @@ function UserProfile(props) {
     const updateUserData = () => {
         axios
         .put(`http://localhost:8080/api/v1/user/user_data`, {
-                userId : props.userId,
+                userId : userId,
                 firstName : firstName,
                 lastName : lastName,
                 info : info
             })
         .then((response) => {
             setUserData(response.data);
+            localStorage.setItem("storedUserData", response.data);
             document.querySelectorAll('input').forEach(input => {
               input.value = '';
             });
-            getUserProfile(props.userId) 
+            getUserProfile(userId) 
         })
         .catch((err) => {
             console.log(err);
         });
     }
 
-    useEffect(() => {
-        getUserProfile(props.userId) 
-    }, [])  
 
   return (
     <div className="formPage">
