@@ -39,14 +39,12 @@ public class BlogApplicationTestsTopicService {
     @Test
     void testCreateTopic() {
         TopicService topicService = new TopicServiceImpl(topicRepository, topicMessageRepository, topicMessageDisplay, topicRepositoryDisplay);
-
-        Topic topic = mock(Topic.class);
-        when(topic.getIdTopic()).thenReturn(10);
-        when(topicRepository.save(topic)).thenReturn(topic);
+        Topic topic = new Topic("topicTitle", 1); // initialize the topic object with necessary properties
+        topic.setIdTopic(10); // set the value for idTopic
+        when(topicRepository.save(argThat(argument -> argument.getTopicTitle().equals(topic.getTopicTitle()) && argument.getIdUserPostAdmin().equals(topic.getIdUserPostAdmin())))).thenReturn(new Topic(10, "topicTitle", 1));
         Integer topicId = topicService.createTopic("topicTitle", 1);
-
         assertEquals(10, topicId);
-        verify(topicRepository).save(topic);
+        verify(topicRepository).save(argThat(argument -> argument.getTopicTitle().equals(topic.getTopicTitle()) && argument.getIdUserPostAdmin().equals(topic.getIdUserPostAdmin()))); // use argument matcher to ensure that the Topic object being passed to save() method matches the one being verified
     }
 
     @Test

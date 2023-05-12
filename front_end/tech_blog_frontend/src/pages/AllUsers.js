@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import properties from '../properties.json';
 
 function AllUsers(props) {
   const [adminId, setAdminId] = useState(props.userId);
@@ -7,7 +8,7 @@ function AllUsers(props) {
   
   function getAllUsers(){
     axios
-    .get("http://localhost:8080/api/v1/user/users")
+    .get(properties.base_URL + "/user/users")
     .then((response) => {
       setUser(response.data);
     })
@@ -20,7 +21,7 @@ function AllUsers(props) {
     console.log(adminId);
     console.log(userId);
     axios
-        .delete(`http://localhost:8080/api/v1/user/delete_user`, { data: { id: userId, idAdminUser: adminId } })
+        .delete(properties.base_URL + `/user/delete_user`, { data: { id: userId, idAdminUser: adminId } })
         .then( () => {
           getAllUsers();
 

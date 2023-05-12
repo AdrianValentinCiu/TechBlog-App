@@ -43,7 +43,8 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public Integer createTopic(String topicTitle, Integer userAdminId) {
-        return topicRepository.save(new Topic(topicTitle, userAdminId)).getIdTopic();
+        Topic topic = topicRepository.save(new Topic(topicTitle, userAdminId));
+        return topic.getIdTopic();
     }
 
     /**

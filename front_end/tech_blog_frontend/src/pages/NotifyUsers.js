@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
+import properties from '../properties.json';
 
 function NotifyUsers() {
     const [title, setTitle] = useState("")
@@ -10,7 +10,7 @@ function NotifyUsers() {
 
     const createPost = () => {
         axios
-          .post(`http://localhost:8080/api/v1/news/new-update`, { title: title, appNews: postText })
+          .post(properties.base_URL + `/news/new-update`, { title: title, appNews: postText })
           .then(() => {
             document.querySelector('input').value = '';
             document.querySelector('textarea').value = '';

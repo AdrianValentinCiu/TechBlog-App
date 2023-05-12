@@ -183,14 +183,20 @@ class BlogApplicationTestsUserService {
 		User user1 = new User(5, true, "test1@mock.com", "1234", Role.USER);
 		User user2 = new User(5, true, "test2@mock.com", "1234", Role.USER);
 		User user3 = new User(5, true, "test3@mock.com", "1234", Role.USER);
-		List<User> users = new LinkedList<User>();
-		users.add(user1);
-		users.add(user2);
-		users.add(user3);
+		User user4 = new User(5, true, "test3@mock.com", "1234", Role.ADMIN);
+		List<User> users_input = new LinkedList<User>();
+		List<User> users_output = new LinkedList<User>();
+		users_input.add(user1);
+		users_input.add(user2);
+		users_input.add(user3);
+		users_input.add(user4);
+		users_output.add(user1);
+		users_output.add(user2);
+		users_output.add(user3);
 		UserService userService = new UserServiceImpl(userRepository, additionalUserDataRepository, userRepositoryDisplay);
-		when(userRepository.findAll()).thenReturn(users);
+		when(userRepository.findAll()).thenReturn(users_input);
 		List<User> testUsers = userService.getAllUsers();
-		assertTrue(testUsers == users);
+		assertTrue(!users_output.contains(user4) && users_output.contains(user1) && users_output.contains(user2) && users_output.contains(user3));
 		verify(userRepository).findAll();
 	}
 

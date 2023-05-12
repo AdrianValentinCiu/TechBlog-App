@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
+import properties from '../properties.json';
 
 function LogIn({setIsAuth, setUserId, setIsAdmin}) {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ function LogIn({setIsAuth, setUserId, setIsAdmin}) {
       return;
     }
     axios
-        .put(`http://localhost:8080/api/v1/auth/login`, { email, password })
+        .put(properties.base_URL + `/auth/login`, { email, password })
         .then((response) => {
             setUserData(response.data);
             console.log(response.data.idUser);

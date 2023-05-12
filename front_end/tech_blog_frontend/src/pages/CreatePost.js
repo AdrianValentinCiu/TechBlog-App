@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import properties from '../properties.json';
 
 function CreatePost(props) {
   const [title, setTitle] = useState("")
@@ -11,9 +12,9 @@ function CreatePost(props) {
   const createPost = () => {
     console.log(userId);
     axios
-      .post(`http://localhost:8080/api/v1/topic/create-topic`, { topicTitle: title, idUserPostAdmin: userId })
+      .post(properties.base_URL + `/topic/create-topic`, { topicTitle: title, idUserPostAdmin: userId })
       .then((response) => {
-        axios.post(`http://localhost:8080/api/v1/topic/post-message-topic`, {
+        axios.post(properties.base_URL + `/topic/post-message-topic`, {
           msgText: postText,
           idTopic: response.data,
           idUser: userId,

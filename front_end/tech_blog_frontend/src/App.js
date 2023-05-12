@@ -10,7 +10,7 @@ import AllUsers from "./pages/AllUsers"
 import NotifyUsers from "./pages/NotifyUsers"
 import React, { useState, useEffect  } from 'react'
 import axios from 'axios';
-
+import properties from './properties.json';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -38,14 +38,12 @@ function App() {
     console.log(userId)
     localStorage.clear();
     axios
-    .put(`http://localhost:8080/api/v1/auth/logout`, {id : userId})
+    .put(properties.base_URL + `/auth/logout`, {id : userId})
     .then((response) => {
         console.log(userId);
         setIsAuth(false);
         setIsAdmin(false);
         setUserId("")
-
-
         window.location.replace('http://localhost:3000');
         
     })

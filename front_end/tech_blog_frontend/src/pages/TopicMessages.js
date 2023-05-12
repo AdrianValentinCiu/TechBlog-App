@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import properties from '../properties.json';
 
 function TopicMessages(props) {
     const [topicMessages, setTopicMessages] = useState([]);
@@ -15,7 +16,7 @@ function TopicMessages(props) {
       console.log(topic.idTopic);
       console.log(userId);
       axios
-        .post(`http://localhost:8080/api/v1/topic/post-message-topic`, {msgText : postText, idTopic : topic.idTopic, idUser : userId})
+        .post(properties.base_URL + `/topic/post-message-topic`, {msgText : postText, idTopic : topic.idTopic, idUser : userId})
         .then( () => {
           getTopicMessages(topic.idTopic) 
           document.querySelector('textarea').value = '';
@@ -29,7 +30,7 @@ function TopicMessages(props) {
     function getTopicMessages(topicId){
         console.log(topicId);
         axios
-        .get(`http://localhost:8080/api/v1/topic/topic-messages/${topicId}`)
+        .get(properties.base_URL + `/topic/topic-messages/${topicId}`)
         .then((response) => {
           setTopicMessages(response.data);
           console.log(response.data);
@@ -44,7 +45,7 @@ function TopicMessages(props) {
         console.log(idMessage);
         console.log(userId)
         axios
-        .put(`http://localhost:8080/api/v1/topic/like-topic-message`, {idMessage : idMessage, idTopic : topic.idTopic, idUser : userId})
+        .put(properties.base_URL + `/topic/like-topic-message`, {idMessage : idMessage, idTopic : topic.idTopic, idUser : userId})
         .then((response) => {
           //console.log(response.data);
           getTopicMessages(topic.idTopic) 
