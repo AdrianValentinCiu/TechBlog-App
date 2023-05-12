@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import properties from '../properties.json';
 
 
 function UserProfile(props) {
@@ -37,7 +37,7 @@ function UserProfile(props) {
     const getUserProfile = (userId) => {
         console.log(userId);
         axios
-        .get(`http://localhost:8080/api/v1/user/${userId}`)
+        .get(properties.base_URL + `/user/${userId}`)
         .then((response) => {
             setUserData(response.data);
             localStorage.setItem("storedUserData", response.data);
@@ -49,7 +49,7 @@ function UserProfile(props) {
     
     const updateUserData = () => {
         axios
-        .put(`http://localhost:8080/api/v1/user/user_data`, {
+        .put(properties.base_URL + `/user/user_data`, {
                 userId : userId,
                 firstName : firstName,
                 lastName : lastName,

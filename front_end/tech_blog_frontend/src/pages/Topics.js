@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom" 
+import properties from '../properties.json';
 
 function Home() {
   const [topics, setTopics] = useState([]);
 
   const getTopics = () => {
     axios
-    .get("http://localhost:8080/api/v1/topic/topics")
+    .get(properties.base_URL + "/topic/topics")
     .then((response) => {
       setTopics(response.data);
       console.log(response.data);

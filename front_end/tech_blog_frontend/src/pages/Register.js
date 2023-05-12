@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
+import properties from '../properties.json';
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -14,8 +14,6 @@ function Register() {
   let navigate = useNavigate();
 
   const logInUser = () => {
-    //console.log(email);
-    //console.log(password);
     if (!email || !password || !checkPassword) {
       setShowError(true);
       return;
@@ -27,7 +25,7 @@ function Register() {
     }
 
     axios
-        .post(`http://localhost:8080/api/v1/auth/register`, { email, password })
+        .post(properties.base_URL + `/auth/register`, { email, password })
         .then((response) => {
             setUserData(response.data);
             console.log(response.data.idUser);
