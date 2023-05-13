@@ -57,7 +57,7 @@ function App() {
     <Router>
       <nav>
         <Link to="/"> Topics </Link>
-        <Link to="/createpost"> Create Post </Link>
+        {isAuth && <Link to="/createpost"> Create Post </Link> }
         {isAuth && <Link to="/userprofile"> User Profile </Link>}
         {isAuth && isAdmin && <Link to="/allusers"> All Users </Link>}
         {isAuth && isAdmin && <Link to="/notifyusers"> Notify </Link>}
