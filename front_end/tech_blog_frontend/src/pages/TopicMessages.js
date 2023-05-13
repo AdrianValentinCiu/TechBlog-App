@@ -72,7 +72,7 @@ function TopicMessages(props) {
                       {msg.fullName}
                     </div>
                     <div className='likePost'>
-                      <button onClick={() =>getLikeMessages(msg.idMessage)}>&#128077;</button>
+                      <button disabled={!isAuth} onClick={() =>getLikeMessages(msg.idMessage)}>&#128077;</button>
                       {msg.likesMessage}
                     </div>
                 </div>
