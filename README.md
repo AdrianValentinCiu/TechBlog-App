@@ -73,7 +73,7 @@ The purpose of this application is to enable users to find answears from real pr
 
 ![db_diagram](https://user-images.githubusercontent.com/111737211/225292495-4d65691f-2215-4c26-8fda-3304a194a285.svg)
 
-
+## Backend:
 ## Observer Design Pattern:
 For this application I used the Observer design pattern in order to notofy all users about the new updates in the app via their provided email address when creating a new account on the blog.
 
@@ -163,3 +163,7 @@ For this application I used the Singleton design pattern in order to have only o
 
 ## JUnit Testing:
 I created three diffrent test classes for the interfaces UseeService, AppNewsObserver and TopicService in order to be able to test the functionalities of the classes which implmented those interfaces.
+
+## Frontend:
+For the frontend I used ReactJS with JavaScript to implement all the functionalities described above. For the forntend I update some endpoints to call specific procedures from the database which return the joining data from multiple tables, according of what I had to display on the frontend. 
+Also I used the local storage for the frontend in order not to lose all the data retreived from the backend (all the data would have been lost when the browser page was refreshed).
